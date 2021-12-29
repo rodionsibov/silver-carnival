@@ -1,12 +1,20 @@
 <script setup>
 import { ref } from "vue";
-
 defineProps({
   msg: String,
 });
 
 const likes = ref(0);
 const dislikes = ref(5);
+
+const addLikes = () => {
+  likes.value++;
+};
+
+const removeLikes = () => {
+  dislikes.value--;
+};
+
 
 </script>
 
@@ -26,7 +34,7 @@ const dislikes = ref(5);
       my-4
     "
     type="button"
-    @click="likes++"
+    @click="addLikes"
   >
     likes: {{ likes }}
   </button>
@@ -43,13 +51,14 @@ const dislikes = ref(5);
       rounded
       my-4
     "
-    @click="dislikes++"
+    @click="removeLikes"
   >
     dislikes: {{ dislikes }}
   </button>
   <p>
     Edit
-    <code class="font-mono text-pink-400">components/HelloWorld.vue</code> to test hot module replacement.
+    <code class="font-mono text-pink-400">components/HelloWorld.vue</code> to
+    test hot module replacement.
   </p>
 </template>
 

@@ -7,12 +7,12 @@ defineProps({
 const likes = ref(0);
 const dislikes = ref(5);
 
-const addLikes = () => {
+const addLike = () => {
   likes.value++;
 };
 
-const removeLikes = () => {
-  dislikes.value--;
+const addDislike = () => {
+  dislikes.value++;
 };
 
 
@@ -34,7 +34,7 @@ const removeLikes = () => {
       my-4
     "
     type="button"
-    @click="addLikes"
+    @click="addLike"
   >
     likes: {{ likes }}
   </button>
@@ -51,7 +51,7 @@ const removeLikes = () => {
       rounded
       my-4
     "
-    @click="removeLikes"
+    @click="addDislike"
   >
     dislikes: {{ dislikes }}
   </button>

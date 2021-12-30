@@ -19,7 +19,10 @@ const addDislike = () => {
 
 <template>
   <h1>{{ msg }}</h1>
-
+  <div class="mt-8 flex mx-auto w-fit space-x-3">
+    <div>likes: {{ likes }}</div>
+    <div>dislikes: {{ dislikes }}</div>
+  </div>
   <button
     class="
       bg-gray-800
@@ -34,7 +37,7 @@ const addDislike = () => {
     "
     @click="addLike"
   >
-    likes: {{ likes }}
+    Like
   </button>
   <button
     class="
@@ -50,7 +53,7 @@ const addDislike = () => {
     "
     @click="addDislike"
   >
-    dislikes: {{ dislikes }}
+    Dislike
   </button>
   <p>
     Edit

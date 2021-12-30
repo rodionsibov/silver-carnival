@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+
 defineProps({
   msg: String,
 });
@@ -14,8 +15,6 @@ const addLike = () => {
 const addDislike = () => {
   dislikes.value++;
 };
-
-
 </script>
 
 <template>
@@ -33,13 +32,11 @@ const addDislike = () => {
       rounded
       my-4
     "
-    type="button"
     @click="addLike"
   >
     likes: {{ likes }}
   </button>
   <button
-    type="button"
     class="
       bg-gray-800
       text-white

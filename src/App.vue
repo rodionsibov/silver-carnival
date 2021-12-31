@@ -7,7 +7,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 <template>
   <HelloWorld msg="Hello Vue 3 + Vite" />
   <div class="mt-8">
-    <router-view />
+    <!-- <router-view /> -->
   </div>
 </template>
 

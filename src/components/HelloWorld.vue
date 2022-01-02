@@ -5,7 +5,7 @@ defineProps({
   msg: String,
 });
 
-const posts = [
+const posts = reactive([
   {
     id: 1,
     title: "JavaScript 1",
@@ -22,17 +22,18 @@ const posts = [
     body: "Description 3",
   },
  
-];
+]);
 
 const title = ref('')
 const body = ref('')
 
 const createPost = () => {
   posts.unshift({
-    id: posts.length,
+    id: posts.length + 1,
     title: title.value,
     body: body.value
   });
+  console.log(posts);
   title.value = ''
   body.value = ''
 };

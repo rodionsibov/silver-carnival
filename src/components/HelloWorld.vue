@@ -5,7 +5,7 @@ defineProps({
   msg: String,
 });
 
-const posts = reactive([
+const posts = [
   {
     id: 1,
     title: "JavaScript 1",
@@ -21,43 +21,54 @@ const posts = reactive([
     title: "JavaScript 3",
     body: "Description 3",
   },
-  {
-    id: 4,
-    title: "JavaScript 4",
-    body: "Description 4",
-  },
-]);
+ 
+];
 
-const post = reactive({
-  title: "",
-  body: "",
-});
+const title = ref('')
+const body = ref('')
 
 const createPost = () => {
- posts.push(post)
+  posts.unshift({
+    id: posts.length,
+    title: title.value,
+    body: body.value
+  });
+  title.value = ''
+  body.value = ''
 };
 </script>
 
 <template>
-{{post}}
   <div class="bg-green-300 p-3">
-    <form @click.prevent="createPost" class="space-y-2">
+    <form @submit.prevent="createPost" class="space-y-2">
       <h1>{{ msg }}</h1>
       <input
         class="w-full p-2"
         type="text"
         placeholder="Name"
-        v-model="post.title"
+        v-model="title"
       />
       <input
         class="w-full p-2"
         type="text"
         placeholder="Description"
-        v-model="post.body"
+        v-model="body"
       />
-      <button class="bg-white px-2 py-1 rounded shadow-md hover:opacity-80">
-        Create
-      </button>
+      <input
+        :disabled="title === ''"
+        type="submit"
+        value="Create"
+        class="
+          disabled:opacity-30
+          bg-white
+          px-2
+          py-1
+          rounded
+          shadow-md
+          hover:opacity-80
+          cursor-pointer
+        "
+      />
     </form>
   </div>
   <div class="post" v-for="post in posts" :key="post.id">

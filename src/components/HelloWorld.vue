@@ -32,11 +32,12 @@ const posts = [
 </script>
 
 <template>
-<div class="bg-gray-300 p-3">
-  <form>
+<div class="bg-green-300 p-3">
+  <form class="space-y-2">
     <h1>Create Post</h1>
-    <input type="text" placeholder="Name">
-    <input type="text" placeholder="Description">
+    <input class="w-full p-2" type="text" placeholder="Name">
+    <input class="w-full p-2" type="text" placeholder="Description">
+    <button class="bg-white px-2 py-1 rounded shadow-md hover:opacity-80">Create</button>
   </form>
 </div>
   <div class="post" v-for="post in posts" :key="post.id">

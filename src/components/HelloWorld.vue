@@ -21,21 +21,21 @@ const posts = reactive([
     title: "JavaScript 3",
     body: "Description 3",
   },
- 
 ]);
 
-const title = ref('')
-const body = ref('')
+const post = reactive({
+  title: "",
+  body: "",
+});
 
 const createPost = () => {
   posts.unshift({
     id: posts.length + 1,
-    title: title.value,
-    body: body.value
+    title: post.title,
+    body: post.body,
   });
-  console.log(posts);
-  title.value = ''
-  body.value = ''
+  post.title = "";
+  post.body = "";
 };
 </script>
 
@@ -47,16 +47,16 @@ const createPost = () => {
         class="w-full p-2"
         type="text"
         placeholder="Name"
-        v-model="title"
+        v-model="post.title"
       />
       <input
         class="w-full p-2"
         type="text"
         placeholder="Description"
-        v-model="body"
+        v-model="post.body"
       />
       <input
-        :disabled="title === ''"
+        :disabled="post.title === ''"
         type="submit"
         value="Create"
         class="

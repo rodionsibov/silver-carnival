@@ -8,28 +8,31 @@ defineProps({
 const posts = [
   {
     id: 1,
-    title: "A post about JavaScript",
-    description: "JavaScript is an universal programming language",
+    title: "A post about JavaScript 1",
+    description: "JavaScript is an universal programming language 1",
   },
   {
     id: 2,
-    title: "A post about JavaScript",
-    description: "JavaScript is an universal programming language",
+    title: "A post about JavaScript 2",
+    description: "JavaScript is an universal programming language 2",
   },
   {
     id: 3,
-    title: "A post about JavaScript",
-    description: "JavaScript is an universal programming language",
+    title: "A post about JavaScript 3",
+    description: "JavaScript is an universal programming language 2",
   },
 ];
 </script>
 
 <template>
-  <div class="post">
-    <div><strong>Title:</strong> A post about JavaScript</div>
+  <div class="post" v-for="post in posts" :key="post.id">
     <div>
-      <strong>Description:</strong> JavaScript is an universal programming
-      language
+      <strong>Title:</strong>
+      {{ post.title }}
+    </div>
+    <div>
+      <strong>Description:</strong>
+      {{ post.description }}
     </div>
   </div>
 </template>

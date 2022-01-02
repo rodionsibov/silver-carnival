@@ -8,20 +8,27 @@ defineProps({
 const posts = [
   {
     id: 1,
-    title: "A post about JavaScript 1",
-    description: "JavaScript is an universal programming language 1",
+    title: "JavaScript 1",
+    body: "Description 1",
   },
   {
     id: 2,
-    title: "A post about JavaScript 2",
-    description: "JavaScript is an universal programming language 2",
+    title: "JavaScript 2",
+    body: "Description 2",
   },
   {
     id: 3,
-    title: "A post about JavaScript 3",
-    description: "JavaScript is an universal programming language 2",
+    title: "JavaScript 3",
+    body: "Description 3",
+  },
+  {
+    id: 4,
+    title: "JavaScript 4",
+    body: "Description 4",
   },
 ];
+
+
 </script>
 
 <template>
@@ -32,7 +39,7 @@ const posts = [
     </div>
     <div>
       <strong>Description:</strong>
-      {{ post.description }}
+      {{ post.body }}
     </div>
   </div>
 </template>

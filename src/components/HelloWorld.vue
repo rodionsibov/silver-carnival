@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 defineProps({
   msg: String,
 });
 
-const posts = [
+const posts = reactive([
   {
     id: 1,
     title: "JavaScript 1",
@@ -26,20 +26,40 @@ const posts = [
     title: "JavaScript 4",
     body: "Description 4",
   },
-];
+]);
 
+const post = reactive({
+  title: "",
+  body: "",
+});
 
+const createPost = () => {
+ posts.push(post)
+};
 </script>
 
 <template>
-<div class="bg-green-300 p-3">
-  <form class="space-y-2">
-    <h1>Create Post</h1>
-    <input class="w-full p-2" type="text" placeholder="Name">
-    <input class="w-full p-2" type="text" placeholder="Description">
-    <button class="bg-white px-2 py-1 rounded shadow-md hover:opacity-80">Create</button>
-  </form>
-</div>
+{{post}}
+  <div class="bg-green-300 p-3">
+    <form @click.prevent="createPost" class="space-y-2">
+      <h1>{{ msg }}</h1>
+      <input
+        class="w-full p-2"
+        type="text"
+        placeholder="Name"
+        v-model="post.title"
+      />
+      <input
+        class="w-full p-2"
+        type="text"
+        placeholder="Description"
+        v-model="post.body"
+      />
+      <button class="bg-white px-2 py-1 rounded shadow-md hover:opacity-80">
+        Create
+      </button>
+    </form>
+  </div>
   <div class="post" v-for="post in posts" :key="post.id">
     <div>
       <strong>Title:</strong>

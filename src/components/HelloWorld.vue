@@ -29,7 +29,7 @@ const post = reactive({
 });
 
 const createPost = () => {
-  posts.unshift({
+  posts.push({
     id: posts.length + 1,
     title: post.title,
     body: post.body,

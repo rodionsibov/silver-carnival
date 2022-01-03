@@ -45,17 +45,12 @@ const createPost = () => {
 </script>
 
 <template>
-  <div class="bg-green-300 p-3">
-    <form @submit.prevent="createPost" class="space-y-2">
-      <h1>{{ msg }}</h1>
+  <div class="bg-blue-200 p-8">
+    <form @submit.prevent="createPost" class="flex flex-col gap-3">
+      <h1 class="text-2xl font-bold">{{ msg }}</h1>
+      <input class="p-2" type="text" placeholder="Name" v-model="post.title" />
       <input
-        class="w-full p-2"
-        type="text"
-        placeholder="Name"
-        v-model="post.title"
-      />
-      <input
-        class="w-full p-2"
+        class="p-2"
         type="text"
         placeholder="Description"
         v-model="post.body"
@@ -73,18 +68,22 @@ const createPost = () => {
           shadow-md
           hover:opacity-80
           cursor-pointer
+          w-24
+          self-end
         "
       />
     </form>
   </div>
-  <div class="post" v-for="post in posts" :key="post.id">
-    <div>
-      <strong>Title:</strong>
-      {{ post.title }}
-    </div>
-    <div>
-      <strong>Description:</strong>
-      {{ post.body }}
+  <div class="p-3 space-y-4">
+    <div class="post" v-for="post in posts" :key="post.id">
+      <div>
+        <strong>Title:</strong>
+        {{ post.title }}
+      </div>
+      <div>
+        <strong>Description:</strong>
+        {{ post.body }}
+      </div>
     </div>
   </div>
 </template>
@@ -93,6 +92,5 @@ const createPost = () => {
 .post {
   padding: 15px;
   border: 2px solid teal;
-  margin-top: 15px;
 }
 </style>

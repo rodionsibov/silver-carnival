@@ -1,11 +1,33 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import { reactive } from "vue";
 import PostList from "./components/PostList.vue";
+import PostForm from "./components/PostForm.vue";
+
+const posts = reactive([
+  {
+    id: 1,
+    title: "JavaScript 1",
+    body: "Description 1",
+  },
+  {
+    id: 2,
+    title: "JavaScript 2",
+    body: "Description 2",
+  },
+  {
+    id: 3,
+    title: "JavaScript 3",
+    body: "Description 3",
+  },
+]);
 </script>
 
 <template>
-  <PostList />
+  <PostForm msg="Create Post" />
+  <PostList :posts="posts" />
+  
   <div class="mt-8">
     <!-- <router-view /> -->
   </div>

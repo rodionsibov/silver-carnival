@@ -22,12 +22,16 @@ const posts = reactive([
     body: "Description 3",
   },
 ]);
+
+const createPost = (post) => {
+  posts.push(post)
+}
 </script>
 
 <template>
-  <PostForm msg="Create Post" />
+  <PostForm msg="Create Post" @create="createPost" />
   <PostList :posts="posts" />
-  
+
   <div class="mt-8">
     <!-- <router-view /> -->
   </div>

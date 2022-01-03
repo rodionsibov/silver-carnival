@@ -25,7 +25,6 @@ const createPost = () => {
   emit("create", newPost);
   post.title = "";
   post.body = "";
-  console.log("created");
 };
 </script>
 

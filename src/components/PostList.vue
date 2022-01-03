@@ -8,7 +8,7 @@ defineProps({
 
 <template>
   <div class="p-3 space-y-4">
-    <div class="p-5 border-2 border-teal" v-for="post in posts" :key="post.id">
+    <div class="p-5 border-2 border-teal-500" v-for="post in posts" :key="post.id">
       <div>
         <strong>Title:</strong>
         {{ post.title }}

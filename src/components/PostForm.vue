@@ -2,12 +2,10 @@
 import { reactive } from "vue";
 
 defineProps({
-  msg: String
+  msg: String,
 });
 
-defineEmits([
-    'change'
-])
+const emit = defineEmits(["create"]);
 
 const post = reactive({
   title: "",
@@ -24,15 +22,18 @@ const createPost = () => {
     title: post.title,
     body: post.body,
   };
-
+  emit("create", newPost);
   post.title = "";
   post.body = "";
-console.log('created');
+  console.log("created");
 };
 </script>
 
 <template>
-  <form @submit.prevent="createPost" class="flex flex-col gap-3 bg-blue-200 p-8">
+  <form
+    @submit.prevent="createPost"
+    class="flex flex-col gap-3 bg-blue-200 p-8"
+  >
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
     <input class="p-2" type="text" placeholder="Name" v-model="post.title" />
     <input

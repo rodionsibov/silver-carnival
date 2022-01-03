@@ -5,6 +5,10 @@ defineProps({
   msg: String
 });
 
+defineEmits([
+    'change'
+])
+
 const post = reactive({
   title: "",
   body: "",
@@ -15,14 +19,14 @@ const post = reactive({
 // });
 
 const createPost = () => {
-//   const newPost = {
-//     id: posts.length + 1,
-//     title: post.title,
-//     body: post.body,
-//   };
-//   posts.push(newPost);
-//   post.title = "";
-//   post.body = "";
+  const newPost = {
+    id: Date.now(),
+    title: post.title,
+    body: post.body,
+  };
+
+  post.title = "";
+  post.body = "";
 console.log('created');
 };
 </script>

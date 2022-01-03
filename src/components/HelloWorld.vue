@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, computed } from "vue";
 
 defineProps({
   msg: String,
@@ -28,15 +28,21 @@ const post = reactive({
   body: "",
 });
 
+const sortedPosts = computed(() => {
+  return posts.sort((a, b) => b.id - a.id)
+})
+
 const createPost = () => {
-  posts.push({
+  const newPost = {
     id: posts.length + 1,
     title: post.title,
     body: post.body,
-  });
+  }
+  posts.push(newPost);
   post.title = "";
   post.body = "";
 };
+
 </script>
 
 <template>
@@ -72,7 +78,7 @@ const createPost = () => {
       />
     </form>
   </div>
-  <div class="post" v-for="post in posts" :key="post.id">
+  <div class="post" v-for="post in sortedPosts" :key="post.id">
     <div>
       <strong>Title:</strong>
       {{ post.title }}

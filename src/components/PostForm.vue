@@ -31,7 +31,7 @@ const createPost = () => {
 <template>
   <form
     @submit.prevent="createPost"
-    class="flex flex-col gap-3 bg-blue-200 p-8"
+    class="flex flex-col gap-3 bg-[gold] p-8"
   >
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
     <input class="p-2" type="text" placeholder="Name" v-model="post.title" />

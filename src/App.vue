@@ -5,39 +5,39 @@ import { computed, reactive } from "vue";
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
 
-const posts = reactive([
-  {
-    id: 1,
-    title: "JavaScript 1",
-    body: "Description 1",
-  },
-  {
-    id: 2,
-    title: "JavaScript 2",
-    body: "Description 2",
-  },
-  {
-    id: 3,
-    title: "JavaScript 3",
-    body: "Description 3",
-  },
-]);
+const data = reactive({
+  posts: [
+    {
+      id: 1,
+      title: "JavaScript 1",
+      body: "Description 1",
+    },
+    {
+      id: 2,
+      title: "JavaScript 2",
+      body: "Description 2",
+    },
+    {
+      id: 3,
+      title: "JavaScript 3",
+      body: "Description 3",
+    },
+  ],
+});
 
 const createPost = (post) => {
-  posts.push(post);
+  data.posts.push(post);
 };
-
 
 const removePost = (id) => {
-  return posts.filter((p) => p.id !== id) || posts
+  return data.posts = data.posts.filter((p) => p.id !== id);
 };
-
 
 </script>
 
 <template>
   <PostForm msg="Create Post" @create="createPost" />
-  <PostList :posts="posts" @remove="removePost" />
+  <PostList :posts="data.posts" @remove="removePost" />
 
   <div class="mt-8">
     <!-- <router-view /> -->

@@ -40,7 +40,7 @@ const createPost = () => {
       v-model="post.body"
     />
     <TheButton
-      class="w-24 self-end bg-green-500 text-white"
+      class="w-24 self-end bg-green-500 text-white disabled:opacity-30 disabled:cursor-auto"
       :disabled="!(post.title !== '' && post.body !== '')"
       >Create</TheButton
     >

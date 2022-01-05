@@ -1,7 +1,7 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
 
@@ -24,13 +24,20 @@ const posts = reactive([
 ]);
 
 const createPost = (post) => {
-  posts.push(post)
-}
+  posts.push(post);
+};
+
+
+const removePost = (id) => {
+  return posts.filter((p) => p.id !== id) || posts
+};
+
+
 </script>
 
 <template>
   <PostForm msg="Create Post" @create="createPost" />
-  <PostList :posts="posts" />
+  <PostList :posts="posts" @remove="removePost" />
 
   <div class="mt-8">
     <!-- <router-view /> -->

@@ -7,6 +7,9 @@ defineProps({
     required: true,
   },
 });
+
+const emit = defineEmits(['remove'])
+
 </script>
 
 <template>
@@ -23,7 +26,7 @@ defineProps({
     </div>
     <!-- <hr class="mt-2"> -->
     <div class="space-x-2">
-        <TheButton class="bg-red-500 text-white">Delete</TheButton>
+        <TheButton @click="emit('remove', post)" class="bg-red-500 text-white">Delete</TheButton>
         <TheButton class="bg-blue-500 text-white">Edit</TheButton>
     </div>
   </div>

@@ -1,4 +1,5 @@
 <script setup>
+import TheButton from "./TheButton.vue";
 import { reactive } from "vue";
 
 defineProps({
@@ -29,7 +30,7 @@ const createPost = () => {
 </script>
 
 <template>
-  <form @submit.prevent="createPost" class="flex flex-col gap-3 bg-[gold] p-8">
+  <form @submit.prevent="createPost" class="flex flex-col gap-3 bg-blue-100 p-8">
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
     <input class="p-2" type="text" placeholder="Name" v-model="post.title" />
     <input
@@ -38,22 +39,10 @@ const createPost = () => {
       placeholder="Description"
       v-model="post.body"
     />
-    <input
+    <TheButton
+      class="w-24 self-end bg-green-500 text-white"
       :disabled="!(post.title !== '' && post.body !== '')"
-      type="submit"
-      value="Create"
-      class="
-        disabled:opacity-30
-        bg-white
-        px-2
-        py-1
-        rounded
-        shadow-md
-        hover:opacity-80
-        cursor-pointer
-        w-24
-        self-end
-      "
-    />
+      >Create</TheButton
+    >
   </form>
 </template>

@@ -1,4 +1,6 @@
 <script setup>
+import TheButton from './TheButton.vue'
+
 defineProps({
   post: {
     type: Object,
@@ -21,19 +23,8 @@ defineProps({
     </div>
     <!-- <hr class="mt-2"> -->
     <div class="space-x-2">
-      <button>Delete</button>
-      <button>Edit</button>
+        <TheButton class="bg-red-500 text-white">Delete</TheButton>
+        <TheButton class="bg-blue-500 text-white">Edit</TheButton>
     </div>
   </div>
 </template>
-
-<style scoped>
-button {
-  padding: 5px;
-  border: 2px solid teal;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-</style>

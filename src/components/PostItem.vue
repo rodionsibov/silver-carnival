@@ -8,17 +8,19 @@ defineProps({
 </script>
 
 <template>
-  <div class="p-5 border-2 border-teal-500">
+  <div class="p-5 border-2 border-teal-500 flex items-center justify-between">
     <div>
-      <strong>Title:</strong>
-      {{ post.title }}
+        <div>
+          <strong>Title:</strong>
+          {{ post.title }}
+        </div>
+        <div>
+          <strong>Description:</strong>
+          {{ post.body }}
+        </div>
     </div>
-    <div>
-      <strong>Description:</strong>
-      {{ post.body }}
-    </div>
-    <hr class="mt-2">
-    <div class="space-x-2 mt-4">
+    <!-- <hr class="mt-2"> -->
+    <div class="space-x-2">
       <button>Delete</button>
       <button>Edit</button>
     </div>

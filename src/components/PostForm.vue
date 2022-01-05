@@ -29,10 +29,7 @@ const createPost = () => {
 </script>
 
 <template>
-  <form
-    @submit.prevent="createPost"
-    class="flex flex-col gap-3 bg-[gold] p-8"
-  >
+  <form @submit.prevent="createPost" class="flex flex-col gap-3 bg-[gold] p-8">
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
     <input class="p-2" type="text" placeholder="Name" v-model="post.title" />
     <input
@@ -42,7 +39,7 @@ const createPost = () => {
       v-model="post.body"
     />
     <input
-      :disabled="post.title === ''"
+      :disabled="!(post.title !== '' && post.body !== '')"
       type="submit"
       value="Create"
       class="

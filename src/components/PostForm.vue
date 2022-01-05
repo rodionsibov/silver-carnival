@@ -1,5 +1,6 @@
 <script setup>
 import TheButton from "./TheButton.vue";
+import TheInput from "./TheInput.vue";
 import { computed, reactive } from "vue";
 
 defineProps({
@@ -17,7 +18,7 @@ const post = reactive({
 //   return posts.sort((a, b) => b.id - a.id);
 // });
 
-const isValid = computed(() => !(post.title !== '' && post.body !== ''))
+const isValid = computed(() => !(post.title !== "" && post.body !== ""));
 
 const createPost = () => {
   const newPost = {
@@ -37,13 +38,8 @@ const createPost = () => {
     class="flex flex-col gap-3 bg-blue-100 p-8"
   >
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
-    <input class="p-2" type="text" placeholder="Name" v-model="post.title" />
-    <input
-      class="p-2"
-      type="text"
-      placeholder="Description"
-      v-model="post.body"
-    />
+    <TheInput placeholder="Name" v-model="post.title" />
+    <TheInput placeholder="Description" v-model="post.body" />
     <TheButton
       class="
         w-24

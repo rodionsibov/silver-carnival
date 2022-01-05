@@ -1,6 +1,6 @@
 <script setup>
 import TheButton from "./TheButton.vue";
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 
 defineProps({
   msg: String,
@@ -17,6 +17,8 @@ const post = reactive({
 //   return posts.sort((a, b) => b.id - a.id);
 // });
 
+const isValid = computed(() => !(post.title !== '' && post.body !== ''))
+
 const createPost = () => {
   const newPost = {
     id: Date.now(),
@@ -30,7 +32,10 @@ const createPost = () => {
 </script>
 
 <template>
-  <form @submit.prevent="createPost" class="flex flex-col gap-3 bg-blue-100 p-8">
+  <form
+    @submit.prevent="createPost"
+    class="flex flex-col gap-3 bg-blue-100 p-8"
+  >
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
     <input class="p-2" type="text" placeholder="Name" v-model="post.title" />
     <input
@@ -40,9 +45,15 @@ const createPost = () => {
       v-model="post.body"
     />
     <TheButton
-      class="w-24 self-end bg-green-500 text-white disabled:opacity-30 disabled:cursor-help"
-      :title="!(post.title !== '' && post.body !== '') ? 'Please fill the input fields!' : ''"
-      :disabled="!(post.title !== '' && post.body !== '')"
+      class="
+        w-24
+        self-end
+        bg-green-500
+        text-white
+        disabled:opacity-30 disabled:cursor-help
+      "
+      :title="isValid ? 'Please fill the input fields!' : ''"
+      :disabled="isValid"
       >Create</TheButton
     >
   </form>

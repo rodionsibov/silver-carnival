@@ -30,9 +30,9 @@ const createPost = (post) => {
 };
 
 const removePost = (id) => {
-  return data.posts = data.posts.filter((p) => p.id !== id);
+  if (confirm("Are you sure?"))
+    data.posts = data.posts.filter((p) => p.id !== id);
 };
-
 </script>
 
 <template>

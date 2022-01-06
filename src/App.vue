@@ -55,7 +55,9 @@ const fetchUsers = async () => {
   }
 };
 
-fetchUsers();
+setTimeout(() => {
+  fetchUsers();
+}, 3000);
 </script>
 
 <template>
@@ -68,9 +70,10 @@ fetchUsers();
   <TheDialog v-model:show="dialog.isVisible">
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
-  <div class="md:w-2/3 mx-auto">
+  <div v-if="data.posts.length > 3" class="md:w-2/3 mx-auto">
     <PostList :posts="data.posts" @remove="removePost" />
   </div>
+  <div v-else class="p-9">Loading...</div>
 
   <div class="mt-8">
     <!-- <router-view /> -->

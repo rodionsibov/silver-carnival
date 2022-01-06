@@ -29,6 +29,7 @@ const data = reactive({
 
 const createPost = (post) => {
   data.posts.push(post);
+  dialog.isVisible = false
 };
 
 const removePost = (post) => {

@@ -12,16 +12,16 @@ const data = reactive({
       title: "JavaScript 1",
       body: "Description 1",
     },
-    {
-      id: 2,
-      title: "JavaScript 2",
-      body: "Description 2",
-    },
-    {
-      id: 3,
-      title: "JavaScript 3",
-      body: "Description 3",
-    },
+    // {
+    //   id: 2,
+    //   title: "JavaScript 2",
+    //   body: "Description 2",
+    // },
+    // {
+    //   id: 3,
+    //   title: "JavaScript 3",
+    //   body: "Description 3",
+    // },
   ],
 });
 

@@ -5,19 +5,21 @@ defineProps({
   posts: Object,
 });
 
-const emit = defineEmits(['remove'])
-
+const emit = defineEmits(["remove"]);
 </script>
 
 <template>
-  <div class="p-3 space-y-4">
-    <h3 class="text-3xl">User's List</h3>
+  <div v-if="posts.length > 0" class="p-3 space-y-4">
+    <h3 class="text-3xl">Post's List</h3>
     <PostItem
       v-for="post in posts"
       :key="post.id"
       :post="post"
       @remove="emit('remove', post)"
     />
+  </div>
+  <div v-else class="p-3">
+    <h3 class="text-3xl text-red-400">Post's List are empty!</h3>
   </div>
 </template>
 

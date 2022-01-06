@@ -40,6 +40,7 @@ const removePost = (post) => {
 const dialog = reactive({
   isVisible: false,
 });
+
 const showDialog = () => (dialog.isVisible = true);
 </script>
 

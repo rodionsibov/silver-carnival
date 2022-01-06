@@ -9,6 +9,7 @@ import TheButton from "./components/TheButton.vue";
 
 const data = reactive({
   posts: [],
+  isPostsLoading: false,
 });
 
 const createPost = (post) => {
@@ -58,7 +59,11 @@ setTimeout(() => {
       <TheButton
         @click="fetchPosts"
         :disabled="data.posts.length > 0"
-        class="bg-purple-500 text-white disabled:opacity-20 disabled:cursor-auto"
+        class="
+          bg-purple-500
+          text-white
+          disabled:opacity-20 disabled:cursor-auto
+        "
         >Get Posts</TheButton
       >
     </div>
@@ -67,7 +72,8 @@ setTimeout(() => {
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
   <div class="md:w-2/3 mx-auto mt-16">
-    <PostList :posts="data.posts" @remove="removePost" />
+    <PostList v-if="!data.isPostsLoading" :posts="data.posts" @remove="removePost" />
+    <div v-else>Loading...</div>
   </div>
 
   <div class="mt-8">

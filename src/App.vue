@@ -1,10 +1,11 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { computed, reactive } from "vue";
+import { reactive, ref } from "vue";
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
 import TheDialog from "./components/TheDialog.vue";
+import TheButton from "./components/TheButton.vue";
 
 const data = reactive({
   posts: [
@@ -35,12 +36,18 @@ const removePost = (post) => {
     data.posts = data.posts.filter((p) => p.id !== post.id);
 };
 
+const isDialogVisible = ref(false);
 </script>
 
 <template>
-  <TheDialog :show="show.dialog">
+  <TheDialog v-model:show="isDialogVisible">
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
+
+  <div class="p-3 flex justify-around bg-gray-700">
+    <h1 class="text-gray-100">The Page with Posts</h1>
+    <TheButton class="bg-green-500 text-white">Show</TheButton>
+  </div>
   <div class="md:w-1/2 mx-auto">
     <PostList :posts="data.posts" @remove="removePost" />
   </div>

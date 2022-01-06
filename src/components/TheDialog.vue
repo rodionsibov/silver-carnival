@@ -6,12 +6,10 @@ defineProps({
   },
 });
 
-const show = reactive({
-  dialog: true,
-});
+const emit = defineEmits(["update-show"]);
 
 const hideDialog = () => {
-  show.dialog = !show.dialog;
+  emit("update-show", false);
 };
 </script>
 

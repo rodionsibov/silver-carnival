@@ -10,7 +10,7 @@ const emit = defineEmits(["remove"]);
 
 <template>
   <div v-if="posts.length > 0" class="p-3 space-y-4">
-    <h3 class="text-3xl">Post's List</h3>
+    <h3 class="text-3xl">Posts</h3>
     <PostItem
       v-for="post in posts"
       :key="post.id"

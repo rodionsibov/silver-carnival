@@ -46,7 +46,7 @@ const showDialog = () => (dialog.isVisible = true);
 
 <template>
   <div class="p-3 flex justify-around bg-gray-700">
-    <h1 class="text-gray-100">The Page with Posts</h1>
+    <h1 class="text-gray-100">Post Page</h1>
     <TheButton @click="showDialog" class="bg-green-500 text-white"
       >Create Post</TheButton
     >

@@ -4,6 +4,7 @@
 import { computed, reactive } from "vue";
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
+import TheDialog from "./components/TheDialog.vue";
 
 const data = reactive({
   posts: [
@@ -12,16 +13,16 @@ const data = reactive({
       title: "JavaScript 1",
       body: "Description 1",
     },
-    // {
-    //   id: 2,
-    //   title: "JavaScript 2",
-    //   body: "Description 2",
-    // },
-    // {
-    //   id: 3,
-    //   title: "JavaScript 3",
-    //   body: "Description 3",
-    // },
+    {
+      id: 2,
+      title: "JavaScript 2",
+      body: "Description 2",
+    },
+    {
+      id: 3,
+      title: "JavaScript 3",
+      body: "Description 3",
+    },
   ],
 });
 
@@ -36,8 +37,10 @@ const removePost = (post) => {
 </script>
 
 <template>
-  <div class="md:w-1/2 mx-auto">
+  <TheDialog :show="true">
     <PostForm msg="Create Post" @create="createPost" />
+  </TheDialog>
+  <div class="md:w-1/2 mx-auto">
     <PostList :posts="data.posts" @remove="removePost" />
   </div>
 

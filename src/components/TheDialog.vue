@@ -6,10 +6,10 @@ defineProps({
   },
 });
 
-const emit = defineEmits(["update-show"]);
+const emit = defineEmits(["update:show"]);
 
 const hideDialog = () => {
-  emit("update-show", false);
+  emit("update:show", false);
 };
 </script>
 

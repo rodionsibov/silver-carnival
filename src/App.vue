@@ -36,18 +36,22 @@ const removePost = (post) => {
     data.posts = data.posts.filter((p) => p.id !== post.id);
 };
 
-const isDialogVisible = ref(false);
+const dialog = reactive({
+  isVisible: false,
+});
+const showDialog = () => (dialog.isVisible = true);
 </script>
 
 <template>
-  <TheDialog v-model:show="isDialogVisible">
-    <PostForm msg="Create Post" @create="createPost" />
-  </TheDialog>
-
   <div class="p-3 flex justify-around bg-gray-700">
     <h1 class="text-gray-100">The Page with Posts</h1>
-    <TheButton class="bg-green-500 text-white">Show</TheButton>
+    <TheButton @click="showDialog" class="bg-green-500 text-white"
+      >Create Post</TheButton
+    >
   </div>
+  <TheDialog v-model:show="dialog.isVisible">
+    <PostForm msg="Create Post" @create="createPost" />
+  </TheDialog>
   <div class="md:w-1/2 mx-auto">
     <PostList :posts="data.posts" @remove="removePost" />
   </div>

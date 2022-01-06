@@ -43,9 +43,9 @@ const fetchPosts = async () => {
   }
 };
 
-// setTimeout(() => {
-//   fetchPosts();
-// }, 1000);
+setTimeout(() => {
+  fetchPosts();
+}, 1000);
 </script>
 
 <template>
@@ -55,7 +55,10 @@ const fetchPosts = async () => {
       <TheButton @click="showDialog" class="bg-green-500 text-white"
         >Create Post</TheButton
       >
-      <TheButton @click="fetchPosts" class="bg-purple-500 text-white"
+      <TheButton
+        @click="fetchPosts"
+        :disabled="data.posts.length > 0"
+        class="bg-purple-500 text-white disabled:opacity-20 disabled:cursor-auto"
         >Get Posts</TheButton
       >
     </div>

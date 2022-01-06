@@ -8,23 +8,7 @@ import TheDialog from "./components/TheDialog.vue";
 import TheButton from "./components/TheButton.vue";
 
 const data = reactive({
-  posts: [
-    {
-      id: crypto.randomUUID(),
-      title: "JavaScript 1",
-      body: "Description 1",
-    },
-    {
-      id: crypto.randomUUID(),
-      title: "JavaScript 2",
-      body: "Description 2",
-    },
-    {
-      id: crypto.randomUUID(),
-      title: "JavaScript 3",
-      body: "Description 3",
-    },
-  ],
+  posts: [],
 });
 
 const createPost = (post) => {

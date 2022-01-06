@@ -36,8 +36,10 @@ const removePost = (post) => {
 </script>
 
 <template>
-  <PostForm msg="Create Post" @create="createPost" />
-  <PostList :posts="data.posts" @remove="removePost" />
+  <div class="md:w-1/2 mx-auto">
+    <PostForm msg="Create Post" @create="createPost" />
+    <PostList :posts="data.posts" @remove="removePost" />
+  </div>
 
   <div class="mt-8">
     <!-- <router-view /> -->

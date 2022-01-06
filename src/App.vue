@@ -38,10 +38,12 @@ const fetchPosts = async () => {
       "https://jsonplaceholder.typicode.com/posts?_limit=10"
     );
     const posts = await res.json();
-    data.isPostsLoading = true
+    data.isPostsLoading = true;
     data.posts = posts;
   } catch (error) {
     alert(error);
+  } finally {
+    data.isPostsLoading = false;
   }
 };
 
@@ -73,7 +75,11 @@ setTimeout(() => {
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
   <div class="md:w-2/3 mx-auto mt-16">
-    <PostList v-if="!data.isPostsLoading" :posts="data.posts" @remove="removePost" />
+    <PostList
+      v-if="!data.isPostsLoading"
+      :posts="data.posts"
+      @remove="removePost"
+    />
     <div v-else>Loading...</div>
   </div>
 

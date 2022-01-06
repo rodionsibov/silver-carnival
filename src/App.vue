@@ -9,17 +9,17 @@ import TheDialog from "./components/TheDialog.vue";
 const data = reactive({
   posts: [
     {
-      id: 1,
+      id: crypto.randomUUID(),
       title: "JavaScript 1",
       body: "Description 1",
     },
     {
-      id: 2,
+      id: crypto.randomUUID(),
       title: "JavaScript 2",
       body: "Description 2",
     },
     {
-      id: 3,
+      id: crypto.randomUUID(),
       title: "JavaScript 3",
       body: "Description 3",
     },

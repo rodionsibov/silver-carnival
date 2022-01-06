@@ -22,7 +22,7 @@ const isValid = computed(() => !(post.title !== "" && post.body !== ""));
 
 const createPost = () => {
   const newPost = {
-    id: Date.now(),
+    id: crypto.randomUUID(),
     title: post.title,
     body: post.body,
   };
@@ -35,7 +35,7 @@ const createPost = () => {
 <template>
   <form
     @submit.prevent="createPost"
-    class="flex flex-col gap-4 p-8 w-full"
+    class="flex flex-col gap-4 p-4 w-full"
   >
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
     <TheInput placeholder="Name" v-model="post.title" />

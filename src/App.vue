@@ -17,7 +17,11 @@ const createPost = (post) => {
 };
 
 const removePost = (post) => {
-  if (confirm(`Are you sure, you want to remove post: ${post.title.toUpperCase()}?`))
+  if (
+    confirm(
+      `Are you sure, you want to remove post: ${post.title.toUpperCase()}?`
+    )
+  )
     data.posts = data.posts.filter((p) => p.id !== post.id);
 };
 
@@ -51,17 +55,16 @@ const fetchPosts = async () => {
       <TheButton @click="showDialog" class="bg-green-500 text-white"
         >Create Post</TheButton
       >
-      <TheButton @click="fetchPosts" class="bg-purple-500 text-white">Get Posts</TheButton>
+      <TheButton @click="fetchPosts" class="bg-purple-500 text-white"
+        >Get Posts</TheButton
+      >
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
   <div class="md:w-2/3 mx-auto mt-16">
-    <div v-if="data.posts.length > 0">
-      <PostList :posts="data.posts" @remove="removePost" />
-    </div>
-    <div v-else>Loading...</div>
+    <PostList :posts="data.posts" @remove="removePost" />
   </div>
 
   <div class="mt-8">

@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <div v-if="show" class="fixed inset-0 bg-green-800/80 pt-10">
+  <div v-if="show" class="fixed inset-0 bg-green-800/80 flex items-center justify-center">
     <slot></slot>
   </div>
 </template>

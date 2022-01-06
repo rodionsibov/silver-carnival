@@ -43,20 +43,20 @@ const dialog = reactive({
 
 const showDialog = () => (dialog.isVisible = true);
 
-const fetchUsers = async () => {
+const fetchPosts = async () => {
   try {
     const res = await fetch(
       "https://jsonplaceholder.typicode.com/posts?_limit=10"
     );
-    const users = await res.json();
-    data.posts = users;
+    const posts = await res.json();
+    data.posts = posts;
   } catch (error) {
     alert(error);
   }
 };
 
 // setTimeout(() => {
-//   fetchUsers();
+//   fetchPosts();
 // }, 1000);
 </script>
 
@@ -67,7 +67,7 @@ const fetchUsers = async () => {
       <TheButton @click="showDialog" class="bg-green-500 text-white"
         >Create Post</TheButton
       >
-      <TheButton @click="fetchUsers" class="bg-purple-500 text-white">Get Posts</TheButton>
+      <TheButton @click="fetchPosts" class="bg-purple-500 text-white">Get Posts</TheButton>
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">

@@ -19,7 +19,7 @@ const emit = defineEmits(["remove"]);
     />
   </div>
   <div v-else class="p-3">
-    <h3 class="text-xl text-center font-bold text-red-500">Post's List is empty!</h3>
+    <h3 class="text-xl text-center font-bold text-red-500">There are no posts here!</h3>
   </div>
 </template>
 

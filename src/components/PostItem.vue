@@ -14,7 +14,7 @@ const emit = defineEmits(['remove'])
 
 <template>
   <div class="p-5 border-2 border-teal-500 flex items-center justify-between">
-    <div>
+    <div class="basis-8/12 space-y-4">
         <div>
           <strong>Title:</strong>
           {{ post.title }}

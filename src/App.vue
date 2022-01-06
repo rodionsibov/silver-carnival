@@ -29,7 +29,7 @@ const data = reactive({
 
 const createPost = (post) => {
   data.posts.push(post);
-  dialog.isVisible = false
+  dialog.isVisible = false;
 };
 
 const removePost = (post) => {
@@ -42,6 +42,20 @@ const dialog = reactive({
 });
 
 const showDialog = () => (dialog.isVisible = true);
+
+const fetchUsers = async () => {
+  try {
+    const res = await fetch(
+      "https://jsonplaceholder.typicode.com/posts?_limit=10"
+    );
+    const users = await res.json();
+    data.posts = users;
+  } catch (error) {
+    alert(error);
+  }
+};
+
+fetchUsers();
 </script>
 
 <template>

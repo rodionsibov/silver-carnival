@@ -55,25 +55,29 @@ const fetchUsers = async () => {
   }
 };
 
-
-
-setTimeout(() => {
-  fetchUsers();
-}, 0);
+// setTimeout(() => {
+//   fetchUsers();
+// }, 1000);
 </script>
 
 <template>
-  <div class="fixed top-0 w-full p-3 flex justify-around bg-gray-700">
+  <div class="fixed top-0 w-full p-3 flex justify-between bg-gray-700">
     <h1 class="text-gray-100">Post Page</h1>
-    <TheButton @click="showDialog" class="bg-green-500 text-white"
-      >Create Post</TheButton
-    >
+    <div class="space-x-2">
+      <TheButton @click="showDialog" class="bg-green-500 text-white"
+        >Create Post</TheButton
+      >
+      <TheButton @click="fetchUsers" class="bg-purple-500 text-white">Get Posts</TheButton>
+    </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
   <div class="md:w-2/3 mx-auto mt-16">
-    <PostList :posts="data.posts" @remove="removePost" />
+    <div v-if="data.posts.length > 0">
+      <PostList :posts="data.posts" @remove="removePost" />
+    </div>
+    <div v-else>Loading...</div>
   </div>
 
   <div class="mt-8">

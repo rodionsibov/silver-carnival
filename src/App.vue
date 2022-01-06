@@ -38,6 +38,7 @@ const fetchPosts = async () => {
       "https://jsonplaceholder.typicode.com/posts?_limit=10"
     );
     const posts = await res.json();
+    data.isPostsLoading = true
     data.posts = posts;
   } catch (error) {
     alert(error);

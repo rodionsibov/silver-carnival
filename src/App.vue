@@ -68,7 +68,7 @@ fetchUsers();
   <TheDialog v-model:show="dialog.isVisible">
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
-  <div class="md:w-1/2 mx-auto">
+  <div class="md:w-2/3 mx-auto">
     <PostList :posts="data.posts" @remove="removePost" />
   </div>
 

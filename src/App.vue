@@ -34,10 +34,11 @@ const removePost = (post) => {
   if (confirm("Are you sure?"))
     data.posts = data.posts.filter((p) => p.id !== post.id);
 };
+
 </script>
 
 <template>
-  <TheDialog :show="true">
+  <TheDialog :show="show.dialog">
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
   <div class="md:w-1/2 mx-auto">

@@ -11,5 +11,5 @@ const updateInput = (event) => {
 </script>
 
 <template>
-  <input :value="modelValue" @input="updateInput" type="text" class="p-2" />
+  <input :value="modelValue" @input="updateInput" type="text" class="py-1 px-2 border-b-2" />
 </template>

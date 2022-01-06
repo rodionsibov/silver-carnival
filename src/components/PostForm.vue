@@ -35,18 +35,17 @@ const createPost = () => {
 <template>
   <form
     @submit.prevent="createPost"
-    class="flex flex-col gap-3 bg-blue-100 p-8 w-11/12 md:w-1/2"
+    class="flex flex-col gap-4 p-8 w-full"
   >
     <h1 class="text-2xl font-bold">{{ msg }}</h1>
     <TheInput placeholder="Name" v-model="post.title" />
     <TheInput placeholder="Description" v-model="post.body" />
     <TheButton
       class="
-        w-24
         self-end
         bg-green-500
         text-white
-        disabled:opacity-30 disabled:cursor-help
+        disabled:bg-gray-300 disabled:hover:opacity-100 disabled:cursor-help
       "
       :title="isValid ? 'Please fill the input fields!' : ''"
       :disabled="isValid"

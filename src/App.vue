@@ -6,6 +6,7 @@ import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
 import TheDialog from "./components/TheDialog.vue";
 import TheButton from "./components/TheButton.vue";
+import TheSelect from "./components/TheSelect.vue";
 
 const data = reactive({
   posts: [],
@@ -68,6 +69,7 @@ fetchPosts();
         "
         >Get Posts</TheButton
       >
+      <TheSelect />
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">

@@ -80,7 +80,7 @@ fetchPosts();
         "
         >Get Posts</TheButton
       >
-      <TheSelect v-model="data.selectedSort" />
+      <TheSelect v-model="data.selectedSort" :options="data.sortOptions" />
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">

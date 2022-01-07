@@ -34,22 +34,21 @@ const showDialog = () => (dialog.isVisible = true);
 
 const fetchPosts = async () => {
   try {
-    const res = await fetch(
-      "https://jsonplaceholder.typicode.com/posts?_limit=10"
-    );
-    const posts = await res.json();
     data.isPostsLoading = true;
-    data.posts = posts;
+    setTimeout(async () => {
+      const res = await fetch(
+        "https://jsonplaceholder.typicode.com/posts?_limit=10"
+      );
+      const posts = await res.json();
+      data.posts = posts;
+      data.isPostsLoading = false;
+    }, 1000);
   } catch (error) {
     alert(error);
-  } finally {
-    data.isPostsLoading = false;
   }
 };
 
-setTimeout(() => {
-  fetchPosts();
-}, 1000);
+fetchPosts();
 </script>
 
 <template>
@@ -80,7 +79,7 @@ setTimeout(() => {
       :posts="data.posts"
       @remove="removePost"
     />
-    <div v-else>Loading...</div>
+    <div v-else class="p-3">Loading...</div>
   </div>
 
   <div class="mt-8">

@@ -11,7 +11,17 @@ import TheSelect from "./components/TheSelect.vue";
 const data = reactive({
   posts: [],
   isPostsLoading: false,
-  selectedSort: ''
+  selectedSort: '',
+  sortOptions: [
+    {
+      value: 'title',
+      name: 'Name'
+    },
+    {
+      value: 'body',
+      name: 'Description'
+    },
+  ]
 });
 
 const createPost = (post) => {

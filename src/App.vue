@@ -71,7 +71,7 @@ fetchPosts();
 //   }
 // );
 
-const selectedSort = computed(() => {
+const sortedPosts = computed(() => {
   return [...data.posts].sort((a, b) => {
     return a[data.selectedSort]?.localeCompare(b[data.selectedSort]);
   });
@@ -106,7 +106,7 @@ const selectedSort = computed(() => {
   <div class="md:w-2/3 mx-auto">
     <PostList
       v-if="!data.isPostsLoading"
-      :posts="data.posts"
+      :posts="sortedPosts"
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>

@@ -11,6 +11,7 @@ import TheSelect from "./components/TheSelect.vue";
 const data = reactive({
   posts: [],
   isPostsLoading: false,
+  selectedSort: ''
 });
 
 const createPost = (post) => {
@@ -69,7 +70,7 @@ fetchPosts();
         "
         >Get Posts</TheButton
       >
-      <TheSelect />
+      <TheSelect v-model="data.selectedSort" />
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">

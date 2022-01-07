@@ -54,9 +54,9 @@ fetchPosts();
 </script>
 
 <template>
-  <div class="fixed top-0 w-full p-3 flex justify-between bg-gray-700">
-    <h1 class="text-gray-100">Post Page</h1>
-    <div class="space-x-2">
+  <div class="sticky top-0 w-full p-3 md:flex justify-between bg-gray-700">
+    <h1 class="text-yellow-200 mb-4 md:m-0 md:text-2xl font-bold text-4xl">Post Page</h1>
+    <div class="md:space-x-2 md:block flex flex-col gap-2">
       <TheButton @click="showDialog" class="bg-green-500 text-white"
         >Create Post</TheButton
       >
@@ -76,7 +76,7 @@ fetchPosts();
   <TheDialog v-model:show="dialog.isVisible">
     <PostForm msg="Create Post" @create="createPost" />
   </TheDialog>
-  <div class="md:w-2/3 mx-auto mt-16">
+  <div class="md:w-2/3 mx-auto">
     <PostList
       v-if="!data.isPostsLoading"
       :posts="data.posts"

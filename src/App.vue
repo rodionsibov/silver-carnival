@@ -1,7 +1,7 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { reactive, ref, watch } from "vue";
+import { reactive, watch } from "vue";
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
 import TheDialog from "./components/TheDialog.vue";
@@ -20,6 +20,10 @@ const data = reactive({
     {
       value: "body",
       name: "Description",
+    },
+    {
+      value: "id",
+      name: "ID",
     },
   ],
 });
@@ -64,10 +68,12 @@ fetchPosts();
 
 watch(
   () => data.selectedSort,
-  (newValues, prevValues) => console.log(newValues)
+  (newValues, prevValues) => {
+    data.posts.sort((a, b) => {
+      return a[data.selectedSort].toString()?.localeCompare(b[data.selectedSort].toString())
+    })
+  }
 );
-
-watch(() => dialog.isVisible, (newValues, prevValues) => console.log(newValues))
 </script>
 
 <template>

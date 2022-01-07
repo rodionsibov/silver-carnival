@@ -1,7 +1,7 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { reactive, ref } from "vue";
+import { reactive, ref, watch } from "vue";
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
 import TheDialog from "./components/TheDialog.vue";
@@ -11,17 +11,17 @@ import TheSelect from "./components/TheSelect.vue";
 const data = reactive({
   posts: [],
   isPostsLoading: false,
-  selectedSort: '',
+  selectedSort: "",
   sortOptions: [
     {
-      value: 'title',
-      name: 'Name'
+      value: "title",
+      name: "Name",
     },
     {
-      value: 'body',
-      name: 'Description'
+      value: "body",
+      name: "Description",
     },
-  ]
+  ],
 });
 
 const createPost = (post) => {
@@ -61,11 +61,20 @@ const fetchPosts = async () => {
 };
 
 fetchPosts();
+
+watch(
+  () => data.selectedSort,
+  (newValues, prevValues) => console.log(newValues)
+);
+
+watch(() => dialog.isVisible, (newValues, prevValues) => console.log(newValues))
 </script>
 
 <template>
   <div class="sticky top-0 w-full p-3 md:flex justify-between bg-gray-700">
-    <h1 class="text-yellow-200 mb-4 md:m-0 md:text-2xl font-bold text-4xl">Post Page</h1>
+    <h1 class="text-yellow-200 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
+      Post Page
+    </h1>
     <div class="md:space-x-2 md:block flex flex-col gap-2">
       <TheButton @click="showDialog" class="bg-green-500 text-white"
         >Create Post</TheButton

@@ -21,10 +21,6 @@ const data = reactive({
       value: "body",
       name: "Description",
     },
-    {
-      value: "id",
-      name: "ID",
-    },
   ],
 });
 
@@ -70,8 +66,9 @@ watch(
   () => data.selectedSort,
   (newValues, prevValues) => {
     data.posts.sort((a, b) => {
-      return a[data.selectedSort].toString()?.localeCompare(b[data.selectedSort].toString())
-    })
+      return a[data.selectedSort]?.localeCompare(b[data.selectedSort]);
+    });
+    console.log(data.posts);
   }
 );
 </script>

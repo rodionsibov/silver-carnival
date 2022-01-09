@@ -33,8 +33,8 @@ const emit = defineEmits(["remove"]);
   transition: all 1s ease;
 }
 
-.post-list-from,
-.post-list-to {
+.post-list-enter-from,
+.post-list-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }

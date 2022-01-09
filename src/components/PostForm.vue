@@ -34,8 +34,8 @@ const createPost = () => {
 </script>
 
 <template>
-  <form @submit.prevent="createPost" class="flex flex-col gap-4 p-4 w-full">
-    <h1 class="text-2xl font-bold">{{ msg }}</h1>
+  <form @submit.prevent="createPost" class="flex flex-col gap-4 p-4 w-full bg-gray-600">
+    <h1 class="text-2xl font-bold text-white">{{ msg }}</h1>
     <TheInput placeholder="Name" v-model="post.title" />
     <TheInput placeholder="Description" v-model="post.body" />
     <TheButton

@@ -85,7 +85,7 @@ const sortedPosts = computed(() => {
     <h1 class="text-yellow-200 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
       Post Page
     </h1>
-    <TheInput placeholder="Search" v-model="searchQuery" />
+    <TheInput placeholder="Search" v-model="searchQuery" class="my-4 md:m-0 md:w-60" />
     <div class="md:space-x-2 md:block flex flex-col gap-2">
       <TheButton @click="showDialog" class="bg-green-500 text-white"
         >Create Post</TheButton

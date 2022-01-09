@@ -79,7 +79,7 @@ const sortedPosts = computed(() => {
 </script>
 
 <template>
-  <div class="sticky top-0 w-full p-3 md:flex justify-between bg-gray-700">
+  <div class="sticky top-0 w-full p-3 md:flex justify-between bg-gray-700 z-10">
     <h1 class="text-yellow-200 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
       Post Page
     </h1>

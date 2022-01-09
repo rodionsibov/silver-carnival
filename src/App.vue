@@ -78,6 +78,10 @@ const sortedPosts = computed(() => {
     return a[data.selectedSort]?.localeCompare(b[data.selectedSort]);
   });
 });
+
+const sortedAndSearchedPosts = computed(() => {
+  return [...sortedPosts].filter(post => post.title.includes(searchQuery))
+})
 </script>
 
 <template>
@@ -109,7 +113,7 @@ const sortedPosts = computed(() => {
   <div class="md:w-2/3 mx-auto">
     <PostList
       v-if="!data.isPostsLoading"
-      :posts="sortedPosts"
+      :posts="sortedAndSearchedPosts"
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>

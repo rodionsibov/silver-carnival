@@ -81,7 +81,7 @@ const sortedPosts = computed(() => {
 
 const sortedAndSearchedPosts = computed(() => {
   return sortedPosts.value.filter((post) =>
-    post.title.toLowerCase().includes(data.searchQuery)
+    post.title.toLowerCase().includes(data.searchQuery.toLowerCase())
   );
 });
 </script>

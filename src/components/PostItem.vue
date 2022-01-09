@@ -13,7 +13,7 @@ const emit = defineEmits(['remove'])
 </script>
 
 <template>
-  <div class="p-5 border-2 border-teal-500 rounded-md md:flex justify-between">
+  <div class="p-5 border-2 border-teal-500 bg-white rounded-md md:flex justify-between">
     <div class="basis-8/12 space-y-4">
         <div class="text-2xl">
           <strong>Title:</strong>

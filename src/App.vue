@@ -13,6 +13,8 @@ const data = reactive({
   posts: [],
   isPostsLoading: false,
   searchQuery: "",
+  page: 1,
+  limit: 10,
   selectedSort: "",
   sortOptions: [
     {

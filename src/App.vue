@@ -93,7 +93,7 @@ const sortedAndSearchedPosts = computed(() => {
     </h1>
     <TheInput
       placeholder="Search..."
-      v-model="searchQuery"
+      v-model="data.searchQuery"
       class="my-4 md:m-0 md:w-60"
     />
     <div class="md:space-x-2 md:block flex flex-col gap-2">

@@ -53,7 +53,7 @@ const fetchPosts = async () => {
     data.isPostsLoading = true;
     setTimeout(async () => {
       const res = await fetch(
-        "https://jsonplaceholder.typicode.com/posts?_limit=10"
+        `https://jsonplaceholder.typicode.com/posts?_limit=${data.limit}&_page=${data.page}`
       );
       const posts = await res.json();
       data.posts = posts;

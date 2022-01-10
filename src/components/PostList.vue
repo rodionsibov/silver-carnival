@@ -21,9 +21,7 @@ const emit = defineEmits(["remove"]);
     </transition-group>
   </div>
   <div v-else class="p-3">
-    <h3 class="text-lg text-center font-bold text-red-500">
-      There are no posts here!
-    </h3>
+    <h3 class="text-center text-red-500">There are no posts here!</h3>
   </div>
 </template>
 

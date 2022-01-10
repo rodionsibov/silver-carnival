@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "@vue/reactivity";
 import PostItem from "./PostItem.vue";
 
 defineProps({
@@ -6,11 +7,19 @@ defineProps({
 });
 
 const emit = defineEmits(["remove"]);
+
+const title = ref("");
+title.value = JSON.parse(localStorage.getItem("title")) || "Posts";
+
+const saveToLocalStorage = (event) => {
+  const txt = event.target.innerText;
+  localStorage.setItem("title", JSON.stringify(txt));
+};
 </script>
 
 <template>
   <div v-if="posts.length > 0" class="p-3 space-y-4">
-    <h3 class="text-3xl">Posts</h3>
+    <h3 class="text-3xl" contentEditable="true" @blur="saveToLocalStorage">{{ title }}</h3>
     <transition-group name="post-list">
       <PostItem
         v-for="post in posts"

@@ -62,6 +62,7 @@ const fetchPosts = async () => {
         url
         // `https://jsonplaceholder.typicode.com/posts?_limit=${data.limit}&_page=${data.page}`
       );
+      data.totalPages = Math.ceil(res.headers["x-total-count"] / data.limit);
       const posts = await res.json();
       data.posts = posts;
       data.isPostsLoading = false;

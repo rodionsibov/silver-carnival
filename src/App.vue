@@ -15,6 +15,7 @@ const data = reactive({
   searchQuery: "",
   page: 1,
   limit: 10,
+  totalPages: 0,
   selectedSort: "",
   sortOptions: [
     {

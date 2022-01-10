@@ -52,8 +52,14 @@ const fetchPosts = async () => {
   try {
     data.isPostsLoading = true;
     setTimeout(async () => {
+      const url = new URL("https://jsonplaceholder.typicode.com/posts");
+      url.search = new URLSearchParams({
+        _limit: data.limit,
+        _page: data.page,
+      }).toString();
       const res = await fetch(
-        `https://jsonplaceholder.typicode.com/posts?_limit=${data.limit}&_page=${data.page}`
+        url
+        // `https://jsonplaceholder.typicode.com/posts?_limit=${data.limit}&_page=${data.page}`
       );
       const posts = await res.json();
       data.posts = posts;

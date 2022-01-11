@@ -28,7 +28,7 @@ const emit = defineEmits(["remove"]);
         class="
           text-xs
           font-bold
-          bg-gray-600
+          bg-yellow-600
           text-white
           w-8
           h-8

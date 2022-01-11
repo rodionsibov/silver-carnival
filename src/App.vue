@@ -1,7 +1,7 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { computed, reactive, watch, ref } from "vue";
+import { computed, reactive, watch, ref, onMounted } from "vue";
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
 import TheDialog from "./components/TheDialog.vue";
@@ -74,7 +74,46 @@ const fetchPosts = async () => {
   }
 };
 
-fetchPosts();
+const loadMorePosts = async () => {
+  try {
+    data.isPostsLoading = true;
+    setTimeout(async () => {
+      const url = new URL("https://jsonplaceholder.typicode.com/posts");
+      url.search = new URLSearchParams({
+        _limit: data.limit,
+        _page: data.page,
+      }).toString();
+      const res = await fetch(
+        url
+        // `https://jsonplaceholder.typicode.com/posts?_limit=${data.limit}&_page=${data.page}`
+      );
+      data.totalPages = Math.ceil(
+        res.headers.get("x-total-count") / data.limit
+      );
+      const posts = await res.json();
+      data.posts = [...data.posts, ...posts];
+      data.isPostsLoading = false;
+    }, 1000);
+  } catch (error) {
+    alert(error);
+  }
+};
+
+const observerEl = ref(null);
+
+onMounted(() => {
+  fetchPosts();
+  const callback = (entries) => {
+    if(entries[0].isIntersecting) {
+      console.log('go');
+    }
+  };
+  const observer = new IntersectionObserver(callback, {
+    rootMargin: "0px",
+    threshold: 1.0,
+  });
+  observer.observe(observerEl.value);
+});
 
 // watch(
 //   () => data.selectedSort,
@@ -85,12 +124,12 @@ fetchPosts();
 //   }
 // );
 
-watch(
-  () => data.page,
-  () => {
-    fetchPosts();
-  }
-);
+// watch(
+//   () => data.page,
+//   () => {
+//     fetchPosts();
+//   }
+// );
 
 const sortedPosts = computed(() => {
   return [...data.posts].sort((a, b) => {
@@ -104,9 +143,9 @@ const sortedAndSearchedPosts = computed(() => {
   );
 });
 
-const changePage = (pageNumber) => {
-  data.page = pageNumber;
-};
+// const changePage = (pageNumber) => {
+//   data.page = pageNumber;
+// };
 </script>
 
 <template>
@@ -146,7 +185,8 @@ const changePage = (pageNumber) => {
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>
-    <div class="flex justify-center gap-1 mt-4">
+    <div ref="observerEl" class="h-10 bg-red-500"></div>
+    <!-- <div class="flex justify-center gap-1 mt-4">
       <div
         v-for="pageNumber in data.totalPages"
         :key="pageNumber"
@@ -156,7 +196,7 @@ const changePage = (pageNumber) => {
       >
         {{ pageNumber }}
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div class="mt-8">

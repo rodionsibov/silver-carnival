@@ -104,8 +104,8 @@ const observerEl = ref(null);
 onMounted(() => {
   fetchPosts();
   const callback = (entries) => {
-    if(entries[0].isIntersecting) {
-      console.log('go');
+    if (entries[0].isIntersecting) {
+      console.log("go");
     }
   };
   const observer = new IntersectionObserver(callback, {

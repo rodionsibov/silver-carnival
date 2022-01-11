@@ -24,9 +24,21 @@ const emit = defineEmits(["remove"]);
   >
     <div class="basis-8/12 space-y-4">
       <div
-        class="text-xs font-bold bg-gray-600 text-white w-8 h-8 flex items-center justify-center rounded-full"
+        class="
+          text-xs
+          font-bold
+          bg-gray-600
+          text-white
+          w-8
+          h-8
+          flex
+          items-center
+          justify-center
+          ml-auto
+          rounded-full
+        "
       >
-        {{ post.id }}
+        {{ post.id.toString().slice(0, 2) }}
       </div>
       <div class="text-2xl">
         <strong>Title:</strong>

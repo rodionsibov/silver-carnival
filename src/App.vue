@@ -181,7 +181,7 @@ const sortedAndSearchedPosts = computed(() => {
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>
-    <div ref="observerEl" class="h-10 bg-red-500"></div>
+    <div ref="observerEl" class=""></div>
     <!-- <div class="flex justify-center gap-1 mt-4">
       <div
         v-for="pageNumber in data.totalPages"

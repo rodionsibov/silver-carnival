@@ -99,6 +99,7 @@ const sortedAndSearchedPosts = computed(() => {
 
 const changePage = (pageNumber) => {
   data.page = pageNumber;
+  fetchPosts();
 };
 </script>
 

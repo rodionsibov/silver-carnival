@@ -101,7 +101,7 @@ onMounted(() => {
   fetchPosts();
   const observer = new IntersectionObserver(
     (entries) => {
-      if (entries[0].isIntersecting) loadMorePosts();
+      if (entries[0].isIntersecting && data.page < data.totalPages) loadMorePosts();
     },
     {
       rootMargin: "0px",

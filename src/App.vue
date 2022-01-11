@@ -135,6 +135,11 @@ const sortedAndSearchedPosts = computed(() => {
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>
+    <div class="flex gap-3 justify-center">
+      <div v-for="page in data.totalPages" :key="page">
+        {{ page }}
+      </div>
+    </div>
   </div>
 
   <div class="mt-8">

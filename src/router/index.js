@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from './../views/Home.vue'
+import Home from '../views/Home.vue'
 
 const routes = [
     {
@@ -9,7 +9,12 @@ const routes = [
         meta: {
             title: 'Home'
         }
-    }
+    },
+    {
+        path: '/posts',
+        name: 'Posts',
+        component: () => import('../views/PostPage.vue'),
+    },
 ]
 
 const router = createRouter({

@@ -1,7 +1,7 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { computed, reactive, watch } from "vue";
+import { computed, reactive, watch, ref } from "vue";
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
 import TheDialog from "./components/TheDialog.vue";

@@ -20,6 +20,7 @@ const emit = defineEmits(["remove"]);
       rounded-md
       md:flex
       justify-between
+      relative
     "
   >
     <div class="basis-8/12 space-y-4">
@@ -34,8 +35,8 @@ const emit = defineEmits(["remove"]);
           flex
           items-center
           justify-center
-          ml-auto
           rounded-full
+          absolute right-3 top-3
         "
       >
         {{ post.id.toString().slice(0, 3) }}

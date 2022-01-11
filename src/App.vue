@@ -76,23 +76,19 @@ const fetchPosts = async () => {
 
 const loadMorePosts = async () => {
   try {
-    data.isPostsLoading = true;
+    data.page++;
     setTimeout(async () => {
       const url = new URL("https://jsonplaceholder.typicode.com/posts");
       url.search = new URLSearchParams({
         _limit: data.limit,
         _page: data.page,
       }).toString();
-      const res = await fetch(
-        url
-        // `https://jsonplaceholder.typicode.com/posts?_limit=${data.limit}&_page=${data.page}`
-      );
+      const res = await fetch(url);
       data.totalPages = Math.ceil(
         res.headers.get("x-total-count") / data.limit
       );
       const posts = await res.json();
       data.posts = [...data.posts, ...posts];
-      data.isPostsLoading = false;
     }, 1000);
   } catch (error) {
     alert(error);
@@ -103,15 +99,15 @@ const observerEl = ref(null);
 
 onMounted(() => {
   fetchPosts();
-  const callback = (entries) => {
-    if (entries[0].isIntersecting) {
-      console.log("go");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) loadMorePosts();
+    },
+    {
+      rootMargin: "0px",
+      threshold: 1.0,
     }
-  };
-  const observer = new IntersectionObserver(callback, {
-    rootMargin: "0px",
-    threshold: 1.0,
-  });
+  );
   observer.observe(observerEl.value);
 });
 

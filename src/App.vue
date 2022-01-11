@@ -136,8 +136,13 @@ const sortedAndSearchedPosts = computed(() => {
     />
     <div v-else class="p-3">Loading...</div>
     <div class="flex justify-center gap-1 mt-4">
-      <div v-for="page in data.totalPages" :key="page" class="border border-black p-2">
-        {{ page }}
+      <div
+        v-for="pageNumber in data.totalPages"
+        :key="pageNumber"
+        class="border border-black p-2"
+        :class="{ 'border-2 border-green-500': pageNumber === data.page }"
+      >
+        {{ pageNumber }}
       </div>
     </div>
   </div>

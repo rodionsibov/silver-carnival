@@ -85,6 +85,13 @@ fetchPosts();
 //   }
 // );
 
+watch(
+  () => data.page,
+  () => {
+    fetchPosts();
+  }
+);
+
 const sortedPosts = computed(() => {
   return [...data.posts].sort((a, b) => {
     return a[data.selectedSort]?.localeCompare(b[data.selectedSort]);
@@ -99,7 +106,6 @@ const sortedAndSearchedPosts = computed(() => {
 
 const changePage = (pageNumber) => {
   data.page = pageNumber;
-  fetchPosts();
 };
 </script>
 

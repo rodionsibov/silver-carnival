@@ -38,7 +38,7 @@ const emit = defineEmits(["remove"]);
           rounded-full
         "
       >
-        {{ post.id.toString().slice(0, 2) }}
+        {{ post.id.toString().slice(0, 3) }}
       </div>
       <div class="text-2xl">
         <strong>Title:</strong>

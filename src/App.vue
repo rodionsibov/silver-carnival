@@ -96,6 +96,10 @@ const sortedAndSearchedPosts = computed(() => {
     post.title.toLowerCase().includes(data.searchQuery.toLowerCase())
   );
 });
+
+const changePage = (pageNumber) => {
+  data.page = pageNumber;
+};
 </script>
 
 <template>
@@ -139,8 +143,9 @@ const sortedAndSearchedPosts = computed(() => {
       <div
         v-for="pageNumber in data.totalPages"
         :key="pageNumber"
-        class="border border-black p-2"
+        class="border border-black p-2 cursor-pointer"
         :class="{ 'border-2 border-green-500': pageNumber === data.page }"
+        @click="changePage(pageNumber)"
       >
         {{ pageNumber }}
       </div>

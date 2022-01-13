@@ -52,6 +52,9 @@ const emit = defineEmits(["remove"]);
     </div>
     <!-- <hr class="mt-2"> -->
     <div class="space-x-2 self-end mt-3">
+      <TheButton @click="emit('remove', post)" class="bg-green-500 text-white"
+        >Open</TheButton
+      >
       <TheButton @click="emit('remove', post)" class="bg-red-500 text-white"
         >Delete</TheButton
       >

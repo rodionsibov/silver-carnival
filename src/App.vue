@@ -26,7 +26,4 @@ import NavBar from "./components/NavBar.vue";
   box-sizing: border-box;
 }
 
-.router-link-active {
-  font-weight: bold;
-}
 </style>

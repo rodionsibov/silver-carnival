@@ -8,7 +8,7 @@ const router = useRouter()
   <div
     class="flex items-center justify-around bg-indigo-400 text-white h-12"
   >
-    <div>Vue 3</div>
+    <div @click="router.push('/')" class="cursor-pointer">Vue 3</div>
     <div class="flex gap-4 items-center">
       <router-link to="/">Home</router-link>
       <router-link to="/posts">Posts</router-link>

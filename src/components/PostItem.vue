@@ -1,4 +1,5 @@
 <script setup>
+import { useRouter } from "vue-router";
 import TheButton from "./TheButton.vue";
 
 defineProps({
@@ -8,6 +9,7 @@ defineProps({
   },
 });
 
+const router = useRouter()
 const emit = defineEmits(["remove"]);
 </script>
 
@@ -52,7 +54,7 @@ const emit = defineEmits(["remove"]);
     </div>
     <!-- <hr class="mt-2"> -->
     <div class="space-x-2 self-end mt-3">
-      <TheButton @click="emit('remove', post)" class="bg-green-500 text-white"
+      <TheButton @click="router.push(`/posts/${post.id}`)" class="bg-green-500 text-white"
         >Open</TheButton
       >
       <TheButton @click="emit('remove', post)" class="bg-red-500 text-white"

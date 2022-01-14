@@ -195,9 +195,6 @@ const sortedAndSearchedPosts = computed(() => {
     </div> -->
   </div>
 
-  <!-- <div class="mt-8">
-    <router-view />
-  </div> -->
 </template>
 
 <style>

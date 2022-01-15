@@ -1,7 +1,7 @@
 <script setup>
 import TheButton from "./TheButton.vue";
 import TheInput from "./TheInput.vue";
-import { computed, reactive, watch } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 
 defineProps({
   msg: String,
@@ -30,11 +30,13 @@ const createPost = () => {
   post.title = "";
   post.body = "";
 };
-
 </script>
 
 <template>
-  <form @submit.prevent="createPost" class="flex flex-col gap-4 p-4 w-full bg-gray-600">
+  <form
+    @submit.prevent="createPost"
+    class="flex flex-col gap-4 p-4 w-full bg-gray-600"
+  >
     <h1 class="text-2xl font-bold text-white">{{ msg }}</h1>
     <TheInput placeholder="Name" v-model="post.title" />
     <TheInput placeholder="Description" v-model="post.body" />

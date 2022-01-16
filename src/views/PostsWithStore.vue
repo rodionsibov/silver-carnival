@@ -163,7 +163,7 @@ const sortedAndSearchedPosts = computed(() => {
     "
   >
     <h1 class="text-gray-50 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
-      {{ store.state.likes }}
+      {{ store.getters.doubleLikes }}
     </h1>
     <TheInput
       placeholder="Search..."

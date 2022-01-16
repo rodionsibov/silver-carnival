@@ -10,8 +10,11 @@ export default createStore({
         }
     },
     mutations: {
-        setName(state, payload) {
-            state.name = payload
+        incrementLikes(state) {
+            state.likes++
+        },
+        decrementLikes(state) {
+            state.likes--
         }
     },
     actions: {

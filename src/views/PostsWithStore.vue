@@ -2,12 +2,18 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { computed, reactive, watch, ref, onMounted } from "vue";
+import { useStore } from "vuex";
 import PostList from "../components/PostList.vue";
 import PostForm from "../components/PostForm.vue";
 import TheDialog from "../components/TheDialog.vue";
 import TheButton from "../components/TheButton.vue";
 import TheSelect from "../components/TheSelect.vue";
 import TheInput from "../components/TheInput.vue";
+
+const store = useStore();
+const name = computed(() => {
+  return store.state.name;
+});
 
 const data = reactive({
   posts: [],
@@ -101,7 +107,8 @@ onMounted(() => {
   fetchPosts();
   const observer = new IntersectionObserver(
     (entries) => {
-      if (entries[0].isIntersecting && data.page < data.totalPages) loadMorePosts();
+      if (entries[0].isIntersecting && data.page < data.totalPages)
+        loadMorePosts();
     },
     {
       rootMargin: "0px",
@@ -145,7 +152,19 @@ const sortedAndSearchedPosts = computed(() => {
 </script>
 
 <template>
-  <div class="sticky top-0 w-full p-3 md:flex justify-between bg-gray-600 shadow-lg z-10">
+  <div
+    class="
+      sticky
+      top-0
+      w-full
+      p-3
+      md:flex
+      justify-between
+      bg-gray-600
+      shadow-lg
+      z-10
+    "
+  >
     <h1 class="text-gray-50 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
       Post Page
     </h1>
@@ -194,9 +213,7 @@ const sortedAndSearchedPosts = computed(() => {
       </div>
     </div> -->
   </div>
-
 </template>
 
 <style>
-
 </style>

@@ -2,9 +2,13 @@ import { createStore } from 'vuex'
 
 export default createStore({
     state: {
-        name: 'ros'
+        likes: 0
     },
-    getters: {},
+    getters: {
+        doubleLikes(state) {
+            return state.likes * 2
+        }
+    },
     mutations: {
         setName(state, payload) {
             state.name = payload

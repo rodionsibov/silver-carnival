@@ -11,9 +11,6 @@ import TheSelect from "../components/TheSelect.vue";
 import TheInput from "../components/TheInput.vue";
 
 const store = useStore();
-const name = computed(() => {
-  return store.state.name;
-});
 
 const data = reactive({
   posts: [],
@@ -166,7 +163,7 @@ const sortedAndSearchedPosts = computed(() => {
     "
   >
     <h1 class="text-gray-50 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
-      Post Page
+      {{ store.state.likes }}
     </h1>
     <TheInput
       placeholder="Search..."

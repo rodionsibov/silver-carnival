@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import TheButton from "./TheButton.vue";
 
 defineProps({
@@ -9,7 +10,8 @@ defineProps({
   },
 });
 
-const router = useRouter()
+const router = useRouter();
+const store = useStore();
 const emit = defineEmits(["remove"]);
 </script>
 
@@ -26,22 +28,9 @@ const emit = defineEmits(["remove"]);
     "
   >
     <div class="basis-8/12 space-y-4">
-      <div
-        class="
-          text-xs
-          font-bold
-          bg-yellow-600
-          text-white
-          w-8
-          h-8
-          flex
-          items-center
-          justify-center
-          rounded-full
-          absolute right-3 top-3
-        "
-      >
-        {{ post.id.toString().slice(0, 3) }}
+      <div class="text-xs font-extrabold absolute right-3 top-3">
+        ID: {{ post.id.toString().slice(0, 3) }} / likes:
+        {{ store.state.likes }}
       </div>
       <div class="text-2xl">
         <strong>Title:</strong>
@@ -54,7 +43,9 @@ const emit = defineEmits(["remove"]);
     </div>
     <!-- <hr class="mt-2"> -->
     <div class="space-x-2 self-end mt-3">
-      <TheButton @click="router.push(`/posts/${post.id}`)" class="bg-green-500 text-white"
+      <TheButton
+        @click="router.push(`/posts/${post.id}`)"
+        class="bg-green-500 text-white"
         >Open</TheButton
       >
       <TheButton @click="emit('remove', post)" class="bg-red-500 text-white"

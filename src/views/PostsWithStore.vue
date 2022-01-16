@@ -165,6 +165,10 @@ const sortedAndSearchedPosts = computed(() => {
     <h1 class="text-gray-50 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
       {{ store.getters.doubleLikes }}
     </h1>
+    <div class="space-x-2">
+      <TheButton @click="store.commit('incrementLikes')" class="bg-yellow-300">Like</TheButton>
+      <TheButton @click="store.commit('decrementLikes')" class="bg-yellow-300">Dislike</TheButton>
+    </div>
     <TheInput
       placeholder="Search..."
       v-model="data.searchQuery"

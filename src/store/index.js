@@ -14,5 +14,6 @@ export default createStore({
         saveName({ commit }, data) {
             commit('setName', data)
         }
-    }
+    },
+    modules: {}
 })

@@ -62,15 +62,36 @@ export const postModule = {
                     }).toString();
                     const res = await fetch(url)
                     commit('setTotalPages', Math.ceil(
-                        res.headers.get("x-total-count") / data.limit
+                        res.headers.get("x-total-count") / state.limit
                     ))
                     const posts = await res.json();
                     commit('setPosts', posts)
-                    commit('setLoading', false)
                 }, 1000);
             } catch (error) {
                 alert(error);
+            } finally {
+                commit('setLoading', false)
             }
+        },
+        async loadMorePosts({state, commit}) {
+            try {
+                commit('setPage', state.page + 1)
+                setTimeout(async () => {
+                    const url = new URL("https://jsonplaceholder.typicode.com/posts");
+                    url.search = new URLSearchParams({
+                        _limit: state.limit,
+                        _page: state.page,
+                    }).toString();
+                    const res = await fetch(url)
+                    commit('setTotalPages', Math.ceil(
+                        res.headers.get("x-total-count") / state.limit
+                    ))
+                    const posts = await res.json();
+                    commit('setPosts', [...state.posts, ...posts])
+                }, 1000);
+            } catch (error) {
+                alert(error);
+            } 
         }
     }
 }

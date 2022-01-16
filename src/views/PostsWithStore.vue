@@ -12,10 +12,6 @@ import TheInput from "../components/TheInput.vue";
 
 const store = useStore();
 
-const data = reactive({
-  
-});
-
 const createPost = (post) => {
   data.posts.push(post);
   dialog.isVisible = false;
@@ -35,52 +31,6 @@ const dialog = reactive({
 });
 
 const showDialog = () => (dialog.isVisible = true);
-
-const fetchPosts = async () => {
-  try {
-    data.isPostsLoading = true;
-    setTimeout(async () => {
-      const url = new URL("https://jsonplaceholder.typicode.com/posts");
-      url.search = new URLSearchParams({
-        _limit: data.limit,
-        _page: data.page,
-      }).toString();
-      const res = await fetch(
-        url
-        // `https://jsonplaceholder.typicode.com/posts?_limit=${data.limit}&_page=${data.page}`
-      );
-      data.totalPages = Math.ceil(
-        res.headers.get("x-total-count") / data.limit
-      );
-      const posts = await res.json();
-      data.posts = posts;
-      data.isPostsLoading = false;
-    }, 1000);
-  } catch (error) {
-    alert(error);
-  }
-};
-
-const loadMorePosts = async () => {
-  try {
-    data.page++;
-    setTimeout(async () => {
-      const url = new URL("https://jsonplaceholder.typicode.com/posts");
-      url.search = new URLSearchParams({
-        _limit: data.limit,
-        _page: data.page,
-      }).toString();
-      const res = await fetch(url);
-      data.totalPages = Math.ceil(
-        res.headers.get("x-total-count") / data.limit
-      );
-      const posts = await res.json();
-      data.posts = [...data.posts, ...posts];
-    }, 1000);
-  } catch (error) {
-    alert(error);
-  }
-};
 
 const observerEl = ref(null);
 

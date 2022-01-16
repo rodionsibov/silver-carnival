@@ -92,10 +92,8 @@ onMounted(() => {
     >
       {{ store.state.isAuth ? "Welcome" : "Please login to continue!" }}
     </h1>
-    <h1 class="text-gray-50 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
-      {{ store.getters.doubleLikes }}
-    </h1>
-    <div class="space-x-2">
+  
+    <!-- <div class="space-x-2">
       <TheButton @click="store.commit('incrementLikes')" class="bg-yellow-300"
         >Like</TheButton
       >
@@ -107,10 +105,11 @@ onMounted(() => {
         class="bg-red-500 text-white"
         >Reset Likes</TheButton
       >
-    </div>
+    </div> -->
+
     <TheInput
       placeholder="Search..."
-      v-model="data.searchQuery"
+      v-model="store.state.post.searchQuery"
       class="my-4 md:m-0 md:w-60"
     />
     <div class="md:space-x-2 md:block flex flex-col gap-2">
@@ -118,8 +117,8 @@ onMounted(() => {
         >Create Post</TheButton
       >
       <TheButton
-        @click="fetchPosts"
-        :disabled="data.posts.length > 0"
+        @click="store.dispach('fetchPosts')"
+        :disabled="store.state.posts.length > 0"
         class="
           bg-purple-500
           text-white
@@ -127,7 +126,7 @@ onMounted(() => {
         "
         >Get Posts</TheButton
       >
-      <TheSelect v-model="data.selectedSort" :options="data.sortOptions" />
+      <TheSelect v-model="store.state.selectedSort" :options="data.sortOptions" />
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">

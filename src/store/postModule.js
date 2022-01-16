@@ -17,6 +17,7 @@ export const postModule = {
                 name: "Description",
             },
         ],
+        isAuth: false
     }),
     getters: {
         sortedPosts(state) {

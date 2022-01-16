@@ -115,17 +115,7 @@ onMounted(() => {
 //   }
 // );
 
-const sortedPosts = computed(() => {
-  return [...data.posts].sort((a, b) => {
-    return a[data.selectedSort]?.localeCompare(b[data.selectedSort]);
-  });
-});
 
-const sortedAndSearchedPosts = computed(() => {
-  return sortedPosts.value.filter((post) =>
-    post.title.toLowerCase().includes(data.searchQuery.toLowerCase())
-  );
-});
 
 // const changePage = (pageNumber) => {
 //   data.page = pageNumber;

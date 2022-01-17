@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { computed, reactive, watch, ref, onMounted } from "vue";
-import { useStore, mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import { useStore } from "vuex";
 import PostList from "../components/PostList.vue";
 import PostForm from "../components/PostForm.vue";
 import TheDialog from "../components/TheDialog.vue";
@@ -12,39 +12,27 @@ import TheInput from "../components/TheInput.vue";
 
 const store = useStore();
 
-const fetchPosts = () => {
-  store.dispatch("post/fetchPosts");
-};
+const fetchPosts = () => store.dispatch("post/fetchPosts");
+const loadMorePosts = () => store.dispatch("post/loadMorePosts");
+const setPage = () => store.commit("post/setPage");
 
-const loadMorePosts = () => {
-  store.dispatch("loadMorePosts");
-};
+const posts = computed(() => store.state.post.posts);
+const isPostsLoading = computed(() => store.state.post.isPostsLoading);
+const searchQuery = computed(() => store.state.post.searchQuery);
+const page = computed(() => store.state.post.page);
+const limit = computed(() => store.state.post.limit);
+const totalPages = computed(() => store.state.post.totalPages);
+const selectedSort = computed(() => store.state.post.selectedSort);
+const sortOptions = computed(() => store.state.post.sortOptions);
+const isAuth = computed(() => store.state.post.isAuth);
 
-const setPage = () => {
-  store.commit("post/setPage");
-};
-
-const { isPostsLoading } = mapState({
-  posts: (state) => state.post.posts,
-  isPostsLoading: (state) => state.post.isPostsLoading,
-  searchQuery: (state) => state.post.searchQuery,
-  page: (state) => state.post.page,
-  limit: (state) => state.post.limit,
-  totalPages: (state) => state.post.totalPages,
-  selectedSort: (state) => state.post.selectedSort,
-  sortOptions: (state) => state.post.sortOptions,
-  isAuth: (state) => state.post.isAuth,
-});
-
-const { sortedPosts, sortedAndSearchedPosts } = computed(() => {
-  return {
-    sortedPosts: "post/sortedPosts",
-    sortedAndSearchedPosts: "post/sortedAndSearchedPosts",
-  };
-});
+const sortedPosts = computed(() => store.getters["post/sortedPosts"]);
+const sortedAndSearchedPosts = computed(
+  () => store.getters["post/sortedAndSearchedPosts"]
+);
 
 const createPost = (post) => {
-  data.posts.push(post);
+  posts.value.push(post);
   dialog.isVisible = false;
 };
 
@@ -54,7 +42,7 @@ const removePost = (post) => {
       `Are you sure, you want to remove post: ${post.title.toUpperCase()}?`
     )
   )
-    data.posts = data.posts.filter((p) => p.id !== post.id);
+    posts.value = posts.value.filter((p) => p.id !== post.id);
 };
 
 const dialog = reactive({
@@ -66,11 +54,10 @@ const showDialog = () => (dialog.isVisible = true);
 const observerEl = ref(null);
 
 onMounted(() => {
-  console.log('go');
   fetchPosts();
   const observer = new IntersectionObserver(
     (entries) => {
-      if (entries[0].isIntersecting && data.page < data.totalPages)
+      if (entries[0].isIntersecting && page.value < totalPages.value)
         loadMorePosts();
     },
     {
@@ -116,30 +103,12 @@ onMounted(() => {
       z-10
     "
   >
-    <h1
-      class="my-4 text-right text-yellow-500"
-      :class="{ 'text-green-500': store.state.isAuth }"
-    >
-      {{ store.state.isAuth ? "Welcome" : "Please login to use service!" }}
+    <h1 class="text-gray-50 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
+      Post Page
     </h1>
-
-    <!-- <div class="space-x-2">
-      <TheButton @click="store.commit('incrementLikes')" class="bg-yellow-300"
-        >Like</TheButton
-      >
-      <TheButton @click="store.commit('decrementLikes')" class="bg-yellow-300"
-        >Dislike</TheButton
-      >
-      <TheButton
-        @click="store.commit('resetLikes')"
-        class="bg-red-500 text-white"
-        >Reset Likes</TheButton
-      >
-    </div> -->
-
     <TheInput
       placeholder="Search..."
-      v-model="store.state.post.searchQuery"
+      v-model="searchQuery"
       class="my-4 md:m-0 md:w-60"
     />
     <div class="md:space-x-2 md:block flex flex-col gap-2">
@@ -148,7 +117,7 @@ onMounted(() => {
       >
       <TheButton
         @click="fetchPosts"
-        :disabled="store.state.post.posts.length > 0"
+        :disabled="posts.length > 0"
         class="
           bg-purple-500
           text-white
@@ -156,10 +125,7 @@ onMounted(() => {
         "
         >Get Posts</TheButton
       >
-      <TheSelect
-        v-model="store.state.post.selectedSort"
-        :options="store.state.post.sortOptions"
-      />
+      <TheSelect v-model="selectedSort" :options="sortOptions" />
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">
@@ -167,7 +133,7 @@ onMounted(() => {
   </TheDialog>
   <div class="md:w-2/3 mx-auto">
     <PostList
-      v-if="!store.state.post.isPostsLoading"
+      v-if="!isPostsLoading"
       :posts="sortedAndSearchedPosts"
       @remove="removePost"
     />

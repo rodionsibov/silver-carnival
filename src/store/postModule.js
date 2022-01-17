@@ -21,7 +21,7 @@ export const postModule = {
     }),
     getters: {
         sortedPosts(state) {
-            return [state.posts].sort((a, b) => {
+            return [...state.posts].sort((a, b) => {
                 return a[state.selectedSort]?.localeCompare(b[state.selectedSort]);
             });
         },
@@ -94,5 +94,6 @@ export const postModule = {
                 alert(error);
             } 
         }
-    }
+    },
+    namespaced: true
 }

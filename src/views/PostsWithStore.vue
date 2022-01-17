@@ -2,7 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import { computed, reactive, watch, ref, onMounted } from "vue";
-import { useStore } from "vuex";
+import { useStore, mapState, mapMutations, mapGetters, mapActions } from "vuex";
 import PostList from "../components/PostList.vue";
 import PostForm from "../components/PostForm.vue";
 import TheDialog from "../components/TheDialog.vue";
@@ -11,6 +11,37 @@ import TheSelect from "../components/TheSelect.vue";
 import TheInput from "../components/TheInput.vue";
 
 const store = useStore();
+
+const fetchPosts = () => {
+  store.dispatch("post/fetchPosts");
+};
+
+const loadMorePosts = () => {
+  store.dispatch("loadMorePosts");
+};
+
+const setPage = () => {
+  store.commit("post/setPage");
+};
+
+const { isPostsLoading } = mapState({
+  posts: (state) => state.post.posts,
+  isPostsLoading: (state) => state.post.isPostsLoading,
+  searchQuery: (state) => state.post.searchQuery,
+  page: (state) => state.post.page,
+  limit: (state) => state.post.limit,
+  totalPages: (state) => state.post.totalPages,
+  selectedSort: (state) => state.post.selectedSort,
+  sortOptions: (state) => state.post.sortOptions,
+  isAuth: (state) => state.post.isAuth,
+});
+
+const { sortedPosts, sortedAndSearchedPosts } = computed(() => {
+  return {
+    sortedPosts: "post/sortedPosts",
+    sortedAndSearchedPosts: "post/sortedAndSearchedPosts",
+  };
+});
 
 const createPost = (post) => {
   data.posts.push(post);
@@ -35,6 +66,7 @@ const showDialog = () => (dialog.isVisible = true);
 const observerEl = ref(null);
 
 onMounted(() => {
+  console.log('go');
   fetchPosts();
   const observer = new IntersectionObserver(
     (entries) => {
@@ -65,8 +97,6 @@ onMounted(() => {
 //   }
 // );
 
-
-
 // const changePage = (pageNumber) => {
 //   data.page = pageNumber;
 // };
@@ -87,12 +117,12 @@ onMounted(() => {
     "
   >
     <h1
-      class="my-4 text-right text-yellow-500 "
+      class="my-4 text-right text-yellow-500"
       :class="{ 'text-green-500': store.state.isAuth }"
     >
-      {{ store.state.isAuth ? "Welcome" : "Please login to continue!" }}
+      {{ store.state.isAuth ? "Welcome" : "Please login to use service!" }}
     </h1>
-  
+
     <!-- <div class="space-x-2">
       <TheButton @click="store.commit('incrementLikes')" class="bg-yellow-300"
         >Like</TheButton
@@ -117,8 +147,8 @@ onMounted(() => {
         >Create Post</TheButton
       >
       <TheButton
-        @click="store.dispach('fetchPosts')"
-        :disabled="store.state.posts.length > 0"
+        @click="fetchPosts"
+        :disabled="store.state.post.posts.length > 0"
         class="
           bg-purple-500
           text-white
@@ -126,7 +156,10 @@ onMounted(() => {
         "
         >Get Posts</TheButton
       >
-      <TheSelect v-model="store.state.selectedSort" :options="data.sortOptions" />
+      <TheSelect
+        v-model="store.state.post.selectedSort"
+        :options="store.state.post.sortOptions"
+      />
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">
@@ -134,7 +167,7 @@ onMounted(() => {
   </TheDialog>
   <div class="md:w-2/3 mx-auto">
     <PostList
-      v-if="!data.isPostsLoading"
+      v-if="!store.state.post.isPostsLoading"
       :posts="sortedAndSearchedPosts"
       @remove="removePost"
     />

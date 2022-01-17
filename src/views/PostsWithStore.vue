@@ -15,6 +15,8 @@ const store = useStore();
 const fetchPosts = () => store.dispatch("post/fetchPosts");
 const loadMorePosts = () => store.dispatch("post/loadMorePosts");
 const setPage = () => store.commit("post/setPage");
+const setSearchQuery = () => store.commit("post/setSearchQuery");
+const setSelectedSort = () => store.commit("post/setSelectedSort");
 
 const posts = computed(() => store.state.post.posts);
 const isPostsLoading = computed(() => store.state.post.isPostsLoading);
@@ -108,7 +110,8 @@ onMounted(() => {
     </h1>
     <TheInput
       placeholder="Search..."
-      v-model="searchQuery"
+      :model-value="searchQuery"
+      @update:model-value="setSearchQuery"
       class="my-4 md:m-0 md:w-60"
     />
     <div class="md:space-x-2 md:block flex flex-col gap-2">
@@ -125,7 +128,7 @@ onMounted(() => {
         "
         >Get Posts</TheButton
       >
-      <TheSelect v-model="selectedSort" :options="sortOptions" />
+      <TheSelect :model-value="selectedSort" @update:model-value="setSelectedSort" :options="sortOptions" />
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">

@@ -93,6 +93,9 @@ export const postModule = {
             } catch (error) {
                 alert(error);
             } 
+        },
+        createPosts({state, commit},post) {
+
         }
     },
     namespaced: true

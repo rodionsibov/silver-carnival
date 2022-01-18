@@ -30,6 +30,11 @@ const routes = [
         name: 'About',
         component: () => import('../views/About.vue'),
     },
+    {
+        path: '/select',
+        name: 'Select',
+        component: () => import('../views/Select.vue'),
+    },
 ]
 
 const router = createRouter({

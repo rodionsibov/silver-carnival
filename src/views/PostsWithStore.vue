@@ -1,7 +1,7 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { computed, reactive, watch, ref, onMounted } from "vue";
+import { computed, reactive, ref, onMounted, watch } from "vue";
 import { useStore } from "vuex";
 import PostList from "../components/PostList.vue";
 import PostForm from "../components/PostForm.vue";
@@ -34,7 +34,7 @@ const sortedAndSearchedPosts = computed(
 );
 
 const createPost = (post) => {
-  posts.value.push(post);
+  store.dispatch("post/createPost", post);
   dialog.isVisible = false;
 };
 
@@ -44,7 +44,7 @@ const removePost = (post) => {
       `Are you sure, you want to remove post: ${post.title.toUpperCase()}?`
     )
   )
-    posts.value = posts.value.filter((p) => p.id !== post.id);
+    store.dispatch("post/removePost", post);
 };
 
 const dialog = reactive({
@@ -53,42 +53,33 @@ const dialog = reactive({
 
 const showDialog = () => (dialog.isVisible = true);
 
-const observerEl = ref(null);
+// const observerEl = ref(null);
 
 onMounted(() => {
   fetchPosts();
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting && page.value < totalPages.value)
-        loadMorePosts();
-    },
-    {
-      rootMargin: "0px",
-      threshold: 1.0,
-    }
-  );
-  observer.observe(observerEl.value);
+  // const observer = new IntersectionObserver(
+  //   (entries) => {
+  //     if (entries[0].isIntersecting && page.value < totalPages.value)
+  //       loadMorePosts();
+  //   },
+  //   {
+  //     rootMargin: "0px",
+  //     threshold: 1.0,
+  //   }
+  // );
+  // observer.observe(observerEl.value);
 });
 
-// watch(
-//   () => data.selectedSort,
-//   (newValues, prevValues) => {
-//     data.posts.sort((a, b) => {
-//       return a[newValues]?.localeCompare(b[newValues]);
-//     });
-//   }
-// );
+watch(
+  () => page,
+  () => {
+    loadMorePosts();
+  }
+);
 
-// watch(
-//   () => data.page,
-//   () => {
-//     fetchPosts();
-//   }
-// );
-
-// const changePage = (pageNumber) => {
-//   data.page = pageNumber;
-// };
+const changePage = (pageNumber) => {
+  data.page = pageNumber;
+};
 </script>
 
 <template>
@@ -128,7 +119,11 @@ onMounted(() => {
         "
         >Get Posts</TheButton
       >
-      <TheSelect :model-value="selectedSort" @update:model-value="setSelectedSort" :options="sortOptions" />
+      <TheSelect
+        :model-value="selectedSort"
+        @update:model-value="setSelectedSort"
+        :options="sortOptions"
+      />
     </div>
   </div>
   <TheDialog v-model:show="dialog.isVisible">
@@ -141,18 +136,18 @@ onMounted(() => {
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>
-    <div ref="observerEl" class=""></div>
-    <!-- <div class="flex justify-center gap-1 mt-4">
+    <!-- <div ref="observerEl" class=""></div> -->
+    <div class="flex justify-center gap-1 mt-4">
       <div
-        v-for="pageNumber in data.totalPages"
+        v-for="pageNumber in totalPages"
         :key="pageNumber"
         class="border border-black p-2 cursor-pointer"
-        :class="{ 'border-2 border-green-500': pageNumber === data.page }"
+        :class="{ 'border-2 border-green-500': pageNumber === page }"
         @click="changePage(pageNumber)"
       >
         {{ pageNumber }}
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 

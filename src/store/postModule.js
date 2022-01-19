@@ -96,6 +96,9 @@ export const postModule = {
         },
         createPosts({ state, commit }, post) {
 
+        },
+        removePost({state, commit}, post) {
+            
         }
     },
     namespaced: true

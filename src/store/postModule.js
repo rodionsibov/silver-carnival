@@ -49,9 +49,17 @@ export const postModule = {
         },
         setSearchQuery(state, searchQuery) {
             state.searchQuery = searchQuery
+        },
+        createPost(state, post) {
+            console.log(post);
+            state.posts.push(post)
+        },
+        removePost(state, post) {
+            state.posts = state.posts.filter(item => item.id !== post.id)
         }
     },
     actions: {
+       
         async fetchPosts({ state, commit, }) {
             try {
                 commit('setLoading', true)
@@ -94,12 +102,7 @@ export const postModule = {
                 alert(error);
             }
         },
-        createPosts({ state, commit }, post) {
 
-        },
-        removePost({state, commit}, post) {
-            
-        }
     },
     namespaced: true
 }

@@ -34,7 +34,7 @@ const sortedAndSearchedPosts = computed(
 );
 
 const createPost = (post) => {
-  store.dispatch("post/createPost", post);
+  store.commit("post/createPost", post);
   dialog.isVisible = false;
 };
 
@@ -44,7 +44,7 @@ const removePost = (post) => {
       `Are you sure, you want to remove post: ${post.title.toUpperCase()}?`
     )
   )
-    store.dispatch("post/removePost", post);
+    store.commit("post/removePost", post);
 };
 
 const dialog = reactive({
@@ -71,14 +71,15 @@ onMounted(() => {
 });
 
 watch(
-  () => page,
+  () => page.value,
   () => {
     loadMorePosts();
   }
 );
 
 const changePage = (pageNumber) => {
-  data.page = pageNumber;
+  store.commit("post/setPage", pageNumber)
+  
 };
 </script>
 

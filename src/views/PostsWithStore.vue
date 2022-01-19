@@ -15,12 +15,20 @@ const store = useStore();
 const fetchPosts = () => store.dispatch("post/fetchPosts");
 const loadMorePosts = () => store.dispatch("post/loadMorePosts");
 const setPage = (pageNumber) => store.commit("post/setPage", pageNumber);
-const setSearchQuery = () => store.commit("post/setSearchQuery");
+const setSearchQuery = (event) => store.commit("post/setSearchQuery", event);
 const setSelectedSort = () => store.commit("post/setSelectedSort");
 
 const posts = computed(() => store.state.post.posts);
 const isPostsLoading = computed(() => store.state.post.isPostsLoading);
-const searchQuery = computed(() => store.state.post.searchQuery);
+// const searchQuery = computed(() => store.state.post.searchQuery);
+// const searchQuery = computed(() => ({
+//   get() {
+//     return store.state.post.searchQuery;
+//   },
+//   set(value) {
+//     store.commit("post/setSearchQuery", value);
+//   },
+// }));
 const page = computed(() => store.state.post.page);
 const limit = computed(() => store.state.post.limit);
 const totalPages = computed(() => store.state.post.totalPages);
@@ -95,12 +103,7 @@ watch(
     <h1 class="text-gray-50 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
       Post Page
     </h1>
-    <TheInput
-      placeholder="Search..."
-      :model-value="searchQuery"
-      @update:model-value="setSearchQuery"
-      class="my-4 md:m-0 md:w-60"
-    />
+    <TheInput placeholder="Search..." class="my-4 md:m-0 md:w-60" />
     <div class="md:space-x-2 md:block flex flex-col gap-2">
       <TheButton @click="showDialog" class="bg-green-500 text-white"
         >Create Post</TheButton
@@ -133,9 +136,7 @@ watch(
     />
     <div v-else class="p-3">Loading...</div>
 
-
     <!-- <div ref="observerEl" class=""></div> -->
-
 
     <div class="flex justify-center gap-1 my-4">
       <div

@@ -1,30 +1,29 @@
 <script setup>
 import TheButton from "./../components/TheButton.vue";
 import { ref, computed, reactive } from "vue";
-const isSelected = ref(false);
-const current = ref(null);
+const selected = ref(null);
 const searchInput = ref("");
 
 const options = reactive([
   {
     title: "Title 1",
-    text: "1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.",
+    text: "1 - A Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.",
     id: 1,
   },
   {
     title: "Title 2",
-    text: "2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.",
+    text: "2 - B Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.",
     id: 2,
   },
   {
     title: "Title 3",
-    text: "3 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.",
+    text: "3 - C Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.",
     id: 3,
   },
 ]);
 
 const setId = (id) => {
-  current.value = id;
+  selected.value = id;
 };
 
 const filteredOptions = computed(() => {
@@ -34,7 +33,7 @@ const filteredOptions = computed(() => {
 });
 
 const filteredText = computed(() => {
-  return options.filter((item) => item.id === current.value);
+  return options.filter((item) => item.id === selected.value);
 });
 </script>
 
@@ -56,7 +55,7 @@ const filteredText = computed(() => {
       />
       <div
         class="hover:bg-gray-300 p-2 rounded"
-        :class="{ 'bg-green-400': option.id === current }"
+        :class="{ 'bg-green-400': option.id === selected }"
         v-for="option in options"
         :key="option.id"
       >

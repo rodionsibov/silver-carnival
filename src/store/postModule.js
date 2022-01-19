@@ -51,7 +51,6 @@ export const postModule = {
             state.searchQuery = searchQuery
         },
         createPost(state, post) {
-            console.log(post);
             state.posts.push(post)
         },
         removePost(state, post) {

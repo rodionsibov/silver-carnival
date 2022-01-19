@@ -14,7 +14,7 @@ const store = useStore();
 
 const fetchPosts = () => store.dispatch("post/fetchPosts");
 const loadMorePosts = () => store.dispatch("post/loadMorePosts");
-const setPage = () => store.commit("post/setPage");
+const setPage = (pageNumber) => store.commit("post/setPage", pageNumber);
 const setSearchQuery = () => store.commit("post/setSearchQuery");
 const setSelectedSort = () => store.commit("post/setSelectedSort");
 
@@ -73,14 +73,9 @@ onMounted(() => {
 watch(
   () => page.value,
   () => {
-    loadMorePosts();
+    fetchPosts();
   }
 );
-
-const changePage = (pageNumber) => {
-  store.commit("post/setPage", pageNumber)
-  
-};
 </script>
 
 <template>
@@ -138,13 +133,13 @@ const changePage = (pageNumber) => {
     />
     <div v-else class="p-3">Loading...</div>
     <!-- <div ref="observerEl" class=""></div> -->
-    <div class="flex justify-center gap-1 mt-4">
+    <div class="flex justify-center gap-1 my-4">
       <div
         v-for="pageNumber in totalPages"
         :key="pageNumber"
         class="border border-black p-2 cursor-pointer"
         :class="{ 'border-2 border-green-500': pageNumber === page }"
-        @click="changePage(pageNumber)"
+        @click="setPage(pageNumber)"
       >
         {{ pageNumber }}
       </div>

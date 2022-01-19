@@ -28,7 +28,7 @@ const selectedSort = computed(() => store.state.post.selectedSort);
 const sortOptions = computed(() => store.state.post.sortOptions);
 const isAuth = computed(() => store.state.post.isAuth);
 
-const sortedPosts = computed(() => store.getters["post/sortedPosts"]);
+// const sortedPosts = computed(() => store.getters["post/sortedPosts"]);
 const sortedAndSearchedPosts = computed(
   () => store.getters["post/sortedAndSearchedPosts"]
 );
@@ -133,7 +133,7 @@ watch(
     />
     <div v-else class="p-3">Loading...</div>
 
-    
+
     <!-- <div ref="observerEl" class=""></div> -->
 
 

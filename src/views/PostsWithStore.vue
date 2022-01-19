@@ -132,7 +132,11 @@ watch(
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>
+
+    
     <!-- <div ref="observerEl" class=""></div> -->
+
+
     <div class="flex justify-center gap-1 my-4">
       <div
         v-for="pageNumber in totalPages"

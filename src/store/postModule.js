@@ -74,7 +74,7 @@ export const postModule = {
                 commit('setLoading', false)
             }
         },
-        async loadMorePosts({state, commit}) {
+        async loadMorePosts({ state, commit }) {
             try {
                 commit('setPage', state.page + 1)
                 setTimeout(async () => {
@@ -92,9 +92,9 @@ export const postModule = {
                 }, 1000);
             } catch (error) {
                 alert(error);
-            } 
+            }
         },
-        createPosts({state, commit},post) {
+        createPosts({ state, commit }, post) {
 
         }
     },

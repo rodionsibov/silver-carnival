@@ -1,6 +1,7 @@
 <script setup>
 import TheButton from "./../components/TheButton.vue";
 import { ref, computed, reactive } from "vue";
+
 const selected = ref(null);
 const searchInput = ref("");
 
@@ -38,12 +39,12 @@ const filteredText = computed(() => {
 </script>
 
 <template>
+  
   <div class="flex gap-5 justify-center p-5">
     <router-link to="" class="text-center font-bold">Step 1</router-link>
     <router-link to="" class="text-center">Step 2</router-link>
     <router-link to="" class="text-center">Step 3</router-link>
   </div>
-
 
   <div class="flex gap-2 p-4 h-[400px]">
     <div class="p-5 space-y-2 bg-gray-200 w-1/2 rounded">
@@ -69,8 +70,16 @@ const filteredText = computed(() => {
     </div>
     <div class="p-5 space-y-2 bg-gray-200 w-1/2 rounded overflow-y-scroll">
       <div class="">
-        <div v-for="option in filteredOptions" :key="option.id" class="space-y-4">
-          <div class="flex gap-4 items-center hover:bg-gray-300 p-2 rounded" v-for="item in 9" :key="item">
+        <div
+          v-for="option in filteredOptions"
+          :key="option.id"
+          class="space-y-4"
+        >
+          <div
+            class="flex gap-4 items-center hover:bg-gray-300 p-2 rounded"
+            v-for="item in 9"
+            :key="item"
+          >
             <input type="checkbox" />
             {{ option.text }}
           </div>
@@ -83,5 +92,4 @@ const filteredText = computed(() => {
 .route-link-active {
   font-weight: bold;
 }
-
 </style>

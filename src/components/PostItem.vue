@@ -29,7 +29,7 @@ const emit = defineEmits(["remove"]);
       relative
     "
   >
-    <div class="basis-8/12 space-y-4">
+    <div class="w-4/5 space-y-4">
       <div class="text-xs font-extrabold absolute right-3 top-3">
         ID: {{ post.id.toString().slice(0, 3) }} / likes:
         {{ store.state.likes }}
@@ -44,7 +44,7 @@ const emit = defineEmits(["remove"]);
       </div>
     </div>
     <!-- <hr class="mt-2"> -->
-    <div class="space-x-2 self-end mt-3">
+    <div class="md:space-y-2 space-x-2 md:space-x-0 md:flex flex-col self-end mt-3">
       <TheButton
         @click="router.push(`/posts/${post.id}`)"
         class="bg-green-500 text-white"

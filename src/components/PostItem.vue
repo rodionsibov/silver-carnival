@@ -27,6 +27,7 @@ const emit = defineEmits(["remove"]);
       md:flex
       justify-between
       relative
+      bg-green-100
     "
   >
     <div class="w-4/5 space-y-4">

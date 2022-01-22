@@ -10,6 +10,8 @@ defineProps({
   },
 });
 
+const editPost = () => console.log('edit mode');
+
 const router = useRouter();
 const store = useStore();
 const emit = defineEmits(["remove"]);
@@ -51,7 +53,7 @@ const emit = defineEmits(["remove"]);
       <TheButton @click="emit('remove', post)" class="bg-red-500 text-white"
         >Delete</TheButton
       >
-      <TheButton class="bg-blue-500 text-white">Edit</TheButton>
+      <TheButton class="bg-blue-500 text-white" @click="editPost">Edit</TheButton>
     </div>
   </div>
 </template>

@@ -2,33 +2,50 @@
 import TheButton from "./TheButton.vue";
 import TheInput from "./TheInput.vue";
 import { computed, onMounted, reactive, ref, watch } from "vue";
+import {useStore} from 'vuex'
+
+const store = useStore()
 
 defineProps({
   msg: String,
 });
 
-const emit = defineEmits(["create"]);
-
-const post = reactive({
-  title: "",
-  body: "",
-});
+// const post = reactive({
+//   title: "",
+//   body: "",
+// });
 
 // const sortedPosts = computed(() => {
 //   return posts.sort((a, b) => b.id - a.id);
 // });
 
-const isValid = computed(() => !(post.title !== "" && post.body !== ""));
+// const title = computed({
+//   get() {
+//     return store.state.post.title;
+//   },
+//   set(value) {
+//     store.commit("post/setTitle", value);
+//   },
+// });
+
+// const text = computed({
+//   get() {
+//     return store.state.post.text;
+//   },
+//   set(value) {
+//     store.commit("post/setText", value);
+//   },
+// });
+
+const isValid = computed(() => !(title.value !== "" && text.value !== ""));
 
 const createPost = () => {
   const newPost = {
     id: crypto.randomUUID(),
-    title: post.title,
-    body: post.body,
+    tilte: title.value,
+    text: text.value,
   };
-  emit("create", newPost);
-  post.title = "";
-  post.body = "";
+  store.commit("post/createPost", newPost);
 };
 </script>
 
@@ -38,8 +55,8 @@ const createPost = () => {
     class="flex flex-col gap-4 p-4 w-full bg-gray-600"
   >
     <h1 class="text-2xl font-bold text-white">{{ msg }}</h1>
-    <TheInput placeholder="Name" v-model="post.title" />
-    <TheInput placeholder="Description" v-model="post.body" />
+    <TheInput placeholder="Name" v-model="title" />
+    <TheInput placeholder="Description" v-model="text" />
     <TheButton
       class="
         self-end

@@ -3,6 +3,8 @@ export const postModule = {
         posts: [],
         isPostsLoading: false,
         searchQuery: "",
+        title: '',
+        text: '',
         page: 1,
         limit: 10,
         totalPages: 0,
@@ -32,6 +34,12 @@ export const postModule = {
         }
     },
     mutations: {
+        setInputTitle(state, value) {
+            state.title = value
+        },
+        setInputText(state, value) {
+            state.text = value
+        },
         setPosts(state, posts) {
             state.posts = posts
         },
@@ -58,7 +66,7 @@ export const postModule = {
         }
     },
     actions: {
-       
+
         async fetchPosts({ state, commit, }) {
             try {
                 commit('setLoading', true)

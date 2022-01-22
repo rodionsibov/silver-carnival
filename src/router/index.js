@@ -21,19 +21,14 @@ const routes = [
         component: () => import('../views/Post.vue'),
     },
     {
-        path: '/store/',
-        name: 'PostWithStore',
-        component: () => import('../views/PostsWithStore.vue'),
-    },
-    {
         path: '/about',
         name: 'About',
         component: () => import('../views/About.vue'),
     },
     {
-        path: '/select',
-        name: 'Select',
-        component: () => import('../views/Select.vue'),
+        path: '/config',
+        name: 'Configuration',
+        component: () => import('../views/Configuration.vue'),
     },
 ]
 

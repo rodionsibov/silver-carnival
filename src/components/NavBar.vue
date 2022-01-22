@@ -12,8 +12,8 @@ const router = useRouter()
     <div class="flex gap-4 items-center">
       <router-link to="/">Home</router-link>
       <router-link to="/posts">Posts</router-link>
-      <TheButton class="bg-black" @click="router.push('/about')">About</TheButton>
-      <TheButton class="bg-red-500" @click="router.push('/store')">Store</TheButton>
+      <TheButton class="bg-black/50" @click="router.push('/about')">About</TheButton>
+      <router-link to="/config">Configuration</router-link>
     </div>
   </div>
 </template>
@@ -21,5 +21,6 @@ const router = useRouter()
 <style scoped>
 .router-link-active {
   font-weight: bold;
+  text-decoration: underline;
 }
 </style>

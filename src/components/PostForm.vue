@@ -37,7 +37,7 @@ const isValid = computed(() => !(title.value !== "" && text.value !== ""));
 const createPost = () => {
   const newPost = {
     id: crypto.randomUUID(),
-    tilte: title.value,
+    title: title.value,
     text: text.value,
   };
   store.commit("post/createPost", newPost);

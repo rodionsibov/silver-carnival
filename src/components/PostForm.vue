@@ -10,32 +10,27 @@ defineProps({
   msg: String,
 });
 
-// const post = reactive({
-//   title: "",
-//   body: "",
-// });
-
 // const sortedPosts = computed(() => {
 //   return posts.sort((a, b) => b.id - a.id);
 // });
 
-// const title = computed({
-//   get() {
-//     return store.state.post.title;
-//   },
-//   set(value) {
-//     store.commit("post/setTitle", value);
-//   },
-// });
+const title = computed({
+  get() {
+    return store.state.post.title;
+  },
+  set(value) {
+    store.commit("post/setInputTitle", value);
+  },
+});
 
-// const text = computed({
-//   get() {
-//     return store.state.post.text;
-//   },
-//   set(value) {
-//     store.commit("post/setText", value);
-//   },
-// });
+const text = computed({
+  get() {
+    return store.state.post.text;
+  },
+  set(value) {
+    store.commit("post/setInputText", value);
+  },
+});
 
 const isValid = computed(() => !(title.value !== "" && text.value !== ""));
 
@@ -55,8 +50,8 @@ const createPost = () => {
     class="flex flex-col gap-4 p-4 w-full bg-gray-600"
   >
     <h1 class="text-2xl font-bold text-white">{{ msg }}</h1>
-    <TheInput placeholder="Name" v-model="title" />
-    <TheInput placeholder="Description" v-model="text" />
+    <TheInput placeholder="Name" :model-value="title" @update:model-value="title = $event" />
+    <TheInput placeholder="Description" v-model="text"/>
     <TheButton
       class="
         self-end

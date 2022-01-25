@@ -24,6 +24,11 @@ const searchQuery = computed({
   set: (val) => store.commit("post/setSearchQuery", val),
 });
 
+// const searchQuery = computed(() => store.state.post.searchQuery);
+// const setSearchQuery = computed((val) =>
+//   store.commit("post/setSearchQuery", val)
+// );
+
 const page = computed(() => store.state.post.page);
 const limit = computed(() => store.state.post.limit);
 const totalPages = computed(() => store.state.post.totalPages);
@@ -78,6 +83,12 @@ watch(
     fetchPosts();
   }
 );
+
+const title = computed({
+  get: () => store.state.post.title,
+  set: val => store.state.post.title = val
+})
+
 </script>
 
 <template>
@@ -97,6 +108,7 @@ watch(
     <h1 class="text-gray-50 mb-4 md:m-0 md:text-2xl font-bold text-4xl">
       Post Page
     </h1>
+    <!-- <input type="text" :value="$store.state.post.title" @input="$store.state.post.title = $event.target.value" /> -->
     <TheInput
       placeholder="Search..."
       v-model="searchQuery"

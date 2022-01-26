@@ -139,8 +139,6 @@ const title = computed({
     <PostForm msg="Create Post" />
   </TheDialog>
 
- 
-
   <div class="md:w-2/3 mx-auto">
     <PostList
       v-if="!isPostsLoading"
@@ -148,17 +146,17 @@ const title = computed({
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>
- <div class="flex justify-center gap-1 my-4">
-    <div
-      v-for="pageNumber in totalPages"
-      :key="pageNumber"
-      class="border border-black p-2 cursor-pointer"
-      :class="{ 'border-2 border-green-500': pageNumber === page }"
-      @click="setPage(pageNumber)"
-    >
-      {{ pageNumber }}
+    <div class="flex justify-center gap-1 my-4">
+      <div
+        v-for="pageNumber in totalPages"
+        :key="pageNumber"
+        class="border border-black p-2 cursor-pointer"
+        :class="{ 'border-2 border-green-500': pageNumber === page }"
+        @click="setPage(pageNumber)"
+      >
+        {{ pageNumber }}
+      </div>
     </div>
-  </div>
     <div ref="observerEl" class="mt-36"></div>
   </div>
 </template>

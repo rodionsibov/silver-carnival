@@ -15,7 +15,7 @@ const store = useStore();
 const fetchPosts = () => store.dispatch("post/fetchPosts");
 const loadMorePosts = () => store.dispatch("post/loadMorePosts");
 const setPage = (pageNumber) => store.commit("post/setPage", pageNumber);
-const setSelectedSort = () => store.commit("post/setSelectedSort");
+const setSelectedSort = (val) => store.commit("post/setSelectedSort", val);
 const posts = computed(() => store.state.post.posts);
 const isPostsLoading = computed(() => store.state.post.isPostsLoading);
 
@@ -60,21 +60,21 @@ const dialog = reactive({
 
 const showDialog = () => (dialog.isVisible = true);
 
-// const observerEl = ref(null);
+const observerEl = ref(null);
 
 onMounted(() => {
   fetchPosts();
-  // const observer = new IntersectionObserver(
-  //   (entries) => {
-  //     if (entries[0].isIntersecting && page.value < totalPages.value)
-  //       loadMorePosts();
-  //   },
-  //   {
-  //     rootMargin: "0px",
-  //     threshold: 1.0,
-  //   }
-  // );
-  // observer.observe(observerEl.value);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting && page.value < totalPages.value)
+        loadMorePosts();
+    },
+    {
+      rootMargin: "0px",
+      threshold: 1.0,
+    }
+  );
+  observer.observe(observerEl.value);
 });
 
 watch(
@@ -86,9 +86,8 @@ watch(
 
 const title = computed({
   get: () => store.state.post.title,
-  set: val => store.state.post.title = val
-})
-
+  set: (val) => (store.state.post.title = val),
+});
 </script>
 
 <template>
@@ -140,6 +139,8 @@ const title = computed({
     <PostForm msg="Create Post" />
   </TheDialog>
 
+ 
+
   <div class="md:w-2/3 mx-auto">
     <PostList
       v-if="!isPostsLoading"
@@ -147,20 +148,18 @@ const title = computed({
       @remove="removePost"
     />
     <div v-else class="p-3">Loading...</div>
-
-    <!-- <div ref="observerEl" class=""></div> -->
-
-    <div class="flex justify-center gap-1 my-4">
-      <div
-        v-for="pageNumber in totalPages"
-        :key="pageNumber"
-        class="border border-black p-2 cursor-pointer"
-        :class="{ 'border-2 border-green-500': pageNumber === page }"
-        @click="setPage(pageNumber)"
-      >
-        {{ pageNumber }}
-      </div>
+ <div class="flex justify-center gap-1 my-4">
+    <div
+      v-for="pageNumber in totalPages"
+      :key="pageNumber"
+      class="border border-black p-2 cursor-pointer"
+      :class="{ 'border-2 border-green-500': pageNumber === page }"
+      @click="setPage(pageNumber)"
+    >
+      {{ pageNumber }}
     </div>
+  </div>
+    <div ref="observerEl" class="mt-36"></div>
   </div>
 </template>
 
